@@ -1,5 +1,6 @@
-﻿  main.cpp
+﻿  Dac.cpp
+  main.cpp
   Linking ../VisualGDB/Debug/synth_rtos...
   ------------------- Memory utilization report -------------------
-  Used FLASH: 4360 bytes out of 512KB (0%)
-  Used SRAM: 268 bytes out of 128KB (0%)
+  Used FLASH: 14KB out of 512KB (2%) [+32]
+  Used SRAM: 15KB out of 128KB (12%)

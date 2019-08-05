@@ -52,9 +52,9 @@ void Dac::set_value(DAC_HandleTypeDef& hdac, uint32_t channel, uint32_t value) {
 
 DAC_HandleTypeDef Dac1::hdac {};
 
-//void Dac::set_value_fast_dac1(uint32_t value) {
-	//*(uint32_t *)dac1_fast_ptr = value;
-//}
+void Dac1::set_value_fast(uint32_t value) {
+	*(uint32_t *)dac1_fast_ptr = value;
+}
 
 //Standard init function as member function, not C call back
 void Dac::HAL_DAC_MspInit(uint32_t channel)

@@ -63,21 +63,20 @@ int main(void)
 	
 	HAL_Init(); 
 	Dac1::init();
-	Dac1::set_value(0x0);
-	while (1) ;
+	Dac1::set_value(0xFFF);
+	//while (1) ;
 
 	
 	
-	
-	__GPIOA_CLK_ENABLE();
-	GPIO_InitTypeDef GPIO_InitStructure;
-
-	GPIO_InitStructure.Pin = GPIO_PIN_5 | GPIO_PIN_4;
-
-	GPIO_InitStructure.Mode = GPIO_MODE_OUTPUT_PP;
-	GPIO_InitStructure.Speed = GPIO_SPEED_FREQ_HIGH;
-	GPIO_InitStructure.Pull = GPIO_NOPULL;
-	HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
+	//__GPIOA_CLK_ENABLE();
+	//GPIO_InitTypeDef GPIO_InitStructure;
+//
+	//GPIO_InitStructure.Pin = GPIO_PIN_5 | GPIO_PIN_4;
+//
+	//GPIO_InitStructure.Mode = GPIO_MODE_OUTPUT_PP;
+	//GPIO_InitStructure.Speed = GPIO_SPEED_FREQ_HIGH;
+	//GPIO_InitStructure.Pull = GPIO_NOPULL;
+	//HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
 	
 	char led1[] = "LED1"; 
 	char led2[] = "LED2"; 
@@ -107,8 +106,12 @@ int main(void)
 extern "C" {
 	void SysTick_Handler(void)
 	{
+		Dac1::set_value_fast(0xFFF);
+
 		HAL_IncTick();
 		osSystickHandler();
+		Dac1::set_value_fast(0x000);
+
 	}
 }
 
@@ -143,12 +146,17 @@ static void LED_Thread2(void const *argument)
 {
 	uint32_t count;
 	(void) argument;
+	
+	
+	
+	
   
 	for (;;)
 	{
 		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
 		osDelay(200);
 	}
+	
 }
 
 #ifdef  USE_FULL_ASSERT
