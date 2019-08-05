@@ -29,6 +29,7 @@
 #include <stm32f4xx_hal.h>
 #include <../CMSIS_RTOS/cmsis_os.h>
 #include "cpp_test.h"
+#include "Dac.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -58,7 +59,15 @@ int main(void)
 	
 	cpp_test();
 	
-	HAL_Init();  
+	
+	
+	HAL_Init(); 
+	Dac1::init();
+	Dac1::set_value(0x0);
+	while (1) ;
+
+	
+	
 	
 	__GPIOA_CLK_ENABLE();
 	GPIO_InitTypeDef GPIO_InitStructure;
@@ -69,42 +78,29 @@ int main(void)
 	GPIO_InitStructure.Speed = GPIO_SPEED_FREQ_HIGH;
 	GPIO_InitStructure.Pull = GPIO_NOPULL;
 	HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
-
-	/* Thread 1 definition */
-	//osThreadDef(LED1, LED_Thread1, osPriorityNormal, 0, configMINIMAL_STACK_SIZE);
 	
 	char led1[] = "LED1"; 
 	char led2[] = "LED2"; 
 
-	
-	
+	/* Thread 1 definition */
 	const osThreadDef_t os_thread_def_LED1 = \
      { led1, LED_Thread1, osPriorityNormal, 0, configMINIMAL_STACK_SIZE };
   
-	 /*  Thread 2 definition */
-	
+	/*  Thread 2 definition */
 	const osThreadDef_t os_thread_def_LED2 = \
 	{ led2, LED_Thread2, osPriorityNormal, 0, configMINIMAL_STACK_SIZE };
-	
-	//osThreadDef(LED2, LED_Thread2, osPriorityNormal, 0, configMINIMAL_STACK_SIZE);
   
-	/* Start thread 1 */
-	//LEDThread1Handle = osThreadCreate(osThread(LED1), NULL);
-	
+	/* Start thread 1 */	
 	LEDThread1Handle = osThreadCreate(&os_thread_def_LED1, NULL);
 
-  
 	/* Start thread 2 */
-	//LEDThread2Handle = osThreadCreate(osThread(LED2), NULL);
 	LEDThread2Handle = osThreadCreate(&os_thread_def_LED2, NULL);
 
-  
 	/* Start scheduler */
 	osKernelStart();
 
-	  /* We should never get here as control is now taken by the scheduler */
-	for (;;)
-		;
+	 /* We should never get here as control is now taken by the scheduler */
+	for (;;);
 }
 
 

@@ -789,9 +789,15 @@
     <ClCompile Include="main.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="Dac.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cpp_test.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dac.h">
       <Filter>Source files</Filter>
     </ClInclude>
   </ItemGroup>
