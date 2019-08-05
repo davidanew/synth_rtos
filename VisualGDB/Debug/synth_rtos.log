@@ -1,4 +1,4 @@
-﻿  synth_rtos.cpp
+﻿  main.cpp
   Linking ../VisualGDB/Debug/synth_rtos...
   ------------------- Memory utilization report -------------------
   Used FLASH: 13KB out of 512KB (2%)

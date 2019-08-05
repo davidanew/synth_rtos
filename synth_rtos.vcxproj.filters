@@ -786,7 +786,7 @@
     <ClCompile Include="cpp_test.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="synth_rtos.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -56,7 +56,7 @@
   </ImportGroup>
   <ItemGroup>
     <ClCompile Include="cpp_test.cpp" />
-    <ClCompile Include="synth_rtos.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="system_stm32f4xx.c" />
     <None Include="stm32.props" />
     <ClCompile Include="$(BSP_ROOT)\STM32F4xxxx\StartupFiles\startup_stm32f446xx.c" />
