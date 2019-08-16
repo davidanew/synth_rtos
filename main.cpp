@@ -129,18 +129,21 @@ extern "C" {
 static void LED_Thread1(void const *argument)
 {
 	(void) argument;
+	
+	while (1)
+		Dac1::set_value_fast(0x7FF);
   
-	for (;;)
-	{
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
-		osDelay(2000);
-		
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-		osThreadSuspend(LEDThread2Handle);
-		osDelay(2000);
-		
-		osThreadResume(LEDThread2Handle);
-	}
+	//for (;;)
+	//{
+		//HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
+		//osDelay(2000);
+		//
+		//HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+		//osThreadSuspend(LEDThread2Handle);
+		//osDelay(2000);r
+		//
+		//osThreadResume(LEDThread2Handle);
+	//}
 }
 
 /**
@@ -150,18 +153,22 @@ static void LED_Thread1(void const *argument)
   */
 static void LED_Thread2(void const *argument)
 {
-	uint32_t count;
+	//uint32_t count;
 	(void) argument;
 	
 	
 	
 	
+	
   
-	for (;;)
-	{
-		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
-		osDelay(200);
-	}
+	//for (;;)
+	//{
+		//HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
+		//osDelay(200);
+	//}
+	while(1)
+		Dac1::set_value_fast(0xFFF);
+
 	
 }
 
