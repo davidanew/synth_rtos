@@ -15,23 +15,43 @@ static void LED_Thread2(void const *argument);
 
 void SystemClock_Config(void);
 
-class Sample_buffer {
-	static float* base_ptr;
-	static float* last_output_ptr;
-	static float* last_input_ptr;
-	static void init(void);
+//class Sample_buffer {
+	//static float* base_ptr;
+	//static float* last_output_ptr;
+	//static float* last_input_ptr;
+	//static void init(void);
+//
+//};
+//
+//float* Sample_buffer::base_ptr = nullptr;
+//float* Sample_buffer::last_output_ptr = nullptr;
+//float* Sample_buffer::last_input_ptr = nullptr;
+//
+//void Sample_buffer::init() {
+	//base_ptr = (float*) pvPortMalloc(100 * sizeof(float));
+//}
 
+
+class Sample_buffer {
+	static uint32_t buffer_size;
+	static float buffer[buffer_size];
+	static uint32_t last_output_index; 
+	static uint32_t last_input_index;
+public:
+	static void add_sample(float);
+	static void get_sample(float);
 };
 
-float* Sample_buffer::base_ptr = nullptr;
-float* Sample_buffer::last_output_ptr = nullptr;
-float* Sample_buffer::last_input_ptr = nullptr;
+uint32_t Sample_buffer::buffer_size {256};
 
-void Sample_buffer::init() {
-	base_ptr = (float*) pvPortMalloc(100 * sizeof(float));
+uint32_t Sample_buffer::last_output_index {0};
+uint32_t Sample_buffer::last_input_index {0};
+
+
+void Sample_buffer::add_sample(float sample) {
+	
 }
-
-
+void Sample_buffer::get_sample(float sample) {}
 
 
 
