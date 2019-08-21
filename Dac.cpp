@@ -50,11 +50,6 @@ void Dac::set_value(DAC_HandleTypeDef& hdac, uint32_t channel, uint32_t value) {
 	}
 }
 
-DAC_HandleTypeDef Dac1::hdac {};
-
-void Dac1::set_value_fast(uint32_t value) {
-	*(uint32_t *)dac1_fast_ptr = value;
-}
 
 //Standard init function as member function, not C call back
 void Dac::HAL_DAC_MspInit(uint32_t channel)
@@ -72,5 +67,12 @@ void Dac::HAL_DAC_MspInit(uint32_t channel)
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);		
 }
+
+DAC_HandleTypeDef Dac_1::hdac {};
+
+void Dac_1::set_value_fast(uint32_t value) {
+	*(uint32_t *)dac1_fast_ptr = value;
+}
+
 
 

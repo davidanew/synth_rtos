@@ -783,22 +783,31 @@
     <None Include="stm32.xml">
       <Filter>VisualGDB settings</Filter>
     </None>
-    <ClCompile Include="cpp_test.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="Dac.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="Usart.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tim.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cpp_test.h">
-      <Filter>Source files</Filter>
-    </ClInclude>
     <ClInclude Include="Dac.h">
       <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="Usart.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tim.h">
+      <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

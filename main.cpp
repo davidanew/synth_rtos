@@ -1,8 +1,12 @@
-
-#include <stm32f4xx_hal.h>
-#include <../CMSIS_RTOS/cmsis_os.h>
-//#include "cpp_test.h"
-#include "Dac.h"
+/*Interrupt for audio output?
+ *2 dma channels
+ *can we pre-emp systic handler?
+ *
+ *output single char
+ *then do stream operator
+ *
+ **/
+#include "main.h"
 
 osThreadId LEDThread1Handle, LEDThread2Handle;
 
@@ -16,11 +20,16 @@ int main(void)
 {
 	HAL_Init(); 
 	SystemClock_Config();
-	Dac1::init();
-	Dac1::set_value(0xFFF);
+	Dac_1::init();
+	Usart_2::init();
 	char led1[] = "LED1"; 
 	char led2[] = "LED2"; 
-
+	Dac_1::set_value(0xFFF);
+	Usart_2::transmit_byte('X');
+	
+	Usart_2 << "hello";
+	
+	
 	/* Thread 1 definition */
 	const osThreadDef_t os_thread_def_LED1 = \
      { led1, LED_Thread1, osPriorityNormal, 0, configMINIMAL_STACK_SIZE };
@@ -46,10 +55,10 @@ int main(void)
 extern "C" {
 	void SysTick_Handler(void)
 	{
-		Dac1::set_value_fast(0xFFF);
+		Dac_1::set_value_fast(0xFFF);
 		HAL_IncTick();
 		osSystickHandler();
-		Dac1::set_value_fast(0x000);
+		Dac_1::set_value_fast(0x000);
 	}
 }
 
@@ -58,7 +67,7 @@ static void LED_Thread1(void const *argument)
 	(void) argument;
 	
 	while (1)
-		Dac1::set_value_fast(0x7FF);
+		Dac_1::set_value_fast(0x7FF);
 
 }
 
@@ -69,7 +78,7 @@ static void LED_Thread2(void const *argument)
 	(void) argument;
 	
 	while(1)
-		Dac1::set_value_fast(0xFFF);
+		Dac_1::set_value_fast(0xFFF);
 
 	
 }

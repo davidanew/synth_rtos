@@ -1,5 +1,17 @@
-﻿  main.cpp
+﻿  Dac.cpp
+  main.cpp
+  Usart.cpp
+  croutine.c
+  event_groups.c
+  list.c
+  queue.c
+  stream_buffer.c
+  tasks.c
+  timers.c
+  cmsis_os.c
+  port.c
+  heap_4.c
   Linking ../VisualGDB/Debug/synth_rtos...
   ------------------- Memory utilization report -------------------
-  Used FLASH: 16KB out of 512KB (3%)
-  Used SRAM: 15KB out of 128KB (12%)
+  Used FLASH: 18KB out of 512KB (3%) [+2068]
+  Used SRAM: 15KB out of 128KB (12%) [+64]

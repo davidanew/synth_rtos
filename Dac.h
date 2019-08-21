@@ -1,10 +1,8 @@
 /*This sets up and outputs values to the DAC*/
 
-#ifndef DAC_H
-#define DAC_H 1
-extern "C" {
-	#include "stm32f4xx_hal.h"
-}
+#pragma once
+
+#include "stm32f4xx_hal.h"
 
 class Dac {
 
@@ -15,7 +13,7 @@ public:
 	static void HAL_DAC_MspInit( uint32_t channel);	
 };
 
-class Dac1 : public Dac {
+class Dac_1 : public Dac {
 	static DAC_HandleTypeDef hdac ;
 public:
 	static const uint32_t dac1_fast_ptr = DAC_BASE + 0x8;
@@ -27,7 +25,4 @@ public:
 };
 
 
-
-
-#endif
 

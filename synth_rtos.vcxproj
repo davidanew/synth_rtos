@@ -55,10 +55,11 @@
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <ItemGroup>
-    <ClCompile Include="cpp_test.cpp" />
     <ClCompile Include="Dac.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="system_stm32f4xx.c" />
+    <ClCompile Include="Tim.cpp" />
+    <ClCompile Include="Usart.cpp" />
     <None Include="stm32.props" />
     <ClCompile Include="$(BSP_ROOT)\STM32F4xxxx\StartupFiles\startup_stm32f446xx.c" />
     <None Include="$(BSP_ROOT)\FreeRTOS\Source\readme.txt" />
@@ -161,9 +162,11 @@
     <ClCompile Include="$(BSP_ROOT)\STM32F4xxxx\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_usart.c" />
     <ClCompile Include="$(BSP_ROOT)\STM32F4xxxx\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_usb.c" />
     <ClCompile Include="$(BSP_ROOT)\STM32F4xxxx\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_utils.c" />
-    <ClInclude Include="cpp_test.h" />
     <ClInclude Include="Dac.h" />
     <ClInclude Include="FreeRTOSConfig.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="Tim.h" />
+    <ClInclude Include="Usart.h" />
     <ClInclude Include="stm32f4xx_hal_conf.h" />
     <ClInclude Include="$(BSP_ROOT)\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h" />
     <ClInclude Include="$(BSP_ROOT)\FreeRTOS\Source\include\croutine.h" />
