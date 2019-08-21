@@ -102,7 +102,7 @@ VisualGDB/Debug/main.o: main.cpp main.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/queue.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/event_groups.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/timers.h \
- Dac.h Usart.h
+ Dac.h Usart.h Tim.h
 
 main.h:
 
@@ -315,3 +315,5 @@ C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.st
 Dac.h:
 
 Usart.h:
+
+Tim.h:

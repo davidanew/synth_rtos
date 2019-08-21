@@ -22,13 +22,11 @@ int main(void)
 	SystemClock_Config();
 	Dac_1::init();
 	Usart_2::init();
+	Tim::init();
 	char led1[] = "LED1"; 
 	char led2[] = "LED2"; 
 	Dac_1::set_value(0xFFF);
 	Usart_2::transmit_byte('X');
-	
-	Usart_2 << "hello";
-	
 	
 	/* Thread 1 definition */
 	const osThreadDef_t os_thread_def_LED1 = \
@@ -59,6 +57,14 @@ extern "C" {
 		HAL_IncTick();
 		osSystickHandler();
 		Dac_1::set_value_fast(0x000);
+	}
+}
+
+extern "C" {
+	void TIM2_IRQHandler(void)
+	{
+		while (1) ;
+		HAL_TIM_IRQHandler(&(Tim::htim2));
 	}
 }
 

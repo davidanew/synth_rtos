@@ -4,3 +4,5 @@
 #include <../CMSIS_RTOS/cmsis_os.h>
 #include "Dac.h"
 #include "Usart.h"
+#include "Tim.h"
+
