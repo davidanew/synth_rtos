@@ -1,4 +1,5 @@
 ﻿  main.cpp
-main.cpp(37,33): error :  array bound is not an integer constant before ']' token
-    static float buffer[buffer_size];
-                                   ^
+  Linking ../VisualGDB/Debug/synth_rtos...
+  ------------------- Memory utilization report -------------------
+  Used FLASH: 20KB out of 512KB (3%) [+684]
+  Used SRAM: 15KB out of 128KB (12%)

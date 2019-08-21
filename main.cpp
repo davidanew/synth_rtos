@@ -15,45 +15,46 @@ static void LED_Thread2(void const *argument);
 
 void SystemClock_Config(void);
 
-//class Sample_buffer {
-	//static float* base_ptr;
-	//static float* last_output_ptr;
-	//static float* last_input_ptr;
-	//static void init(void);
-//
-//};
-//
-//float* Sample_buffer::base_ptr = nullptr;
-//float* Sample_buffer::last_output_ptr = nullptr;
-//float* Sample_buffer::last_input_ptr = nullptr;
-//
-//void Sample_buffer::init() {
-	//base_ptr = (float*) pvPortMalloc(100 * sizeof(float));
-//}
+struct Float_optional {
+	float value ;
+	bool valid ;
+};
 
-
+#define SAMPLE_BUFFER_LENGTH 256
 class Sample_buffer {
-	static uint32_t buffer_size;
-	static float buffer[buffer_size];
+	//const static  uint32_t buffer_size;
+	static float buffer[SAMPLE_BUFFER_LENGTH];
 	static uint32_t last_output_index; 
 	static uint32_t last_input_index;
 public:
-	static void add_sample(float);
-	static void get_sample(float);
+	static bool add_sample(float);
+	static Float_optional get_sample();
 };
-
-uint32_t Sample_buffer::buffer_size {256};
 
 uint32_t Sample_buffer::last_output_index {0};
 uint32_t Sample_buffer::last_input_index {0};
 
-
-void Sample_buffer::add_sample(float sample) {
-	
+bool Sample_buffer::add_sample(float sample) {
+	uint32_t this_input_index = last_input_index + 1;
+	if (this_input_index == SAMPLE_BUFFER_LENGTH)
+		this_input_index = 0;
+	if (this_input_index == last_output_index)
+		//We have caught up with the output buffer and can't add any more samples
+		return false;
+	buffer[this_input_index] = sample;
+	last_input_index = this_input_index;
+	return true; //(success)
 }
-void Sample_buffer::get_sample(float sample) {}
-
-
+Float_optional Sample_buffer::get_sample() {
+	if (last_output_index == last_input_index) 
+		//There are no new samples
+		//The false in the struct return will indicate failure
+		return Float_optional {(float) 0.0, false}	;
+	uint32_t this_output_index = last_output_index + 1;
+	if (this_output_index == SAMPLE_BUFFER_LENGTH)
+		this_output_index = 0;
+	return Float_optional { buffer[this_output_index], true };
+}
 
 int main(void)
 {
