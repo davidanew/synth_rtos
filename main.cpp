@@ -15,6 +15,25 @@ static void LED_Thread2(void const *argument);
 
 void SystemClock_Config(void);
 
+class Sample_buffer {
+	static float* base_ptr;
+	static float* last_output_ptr;
+	static float* last_input_ptr;
+	static void init(void);
+
+};
+
+float* Sample_buffer::base_ptr = nullptr;
+float* Sample_buffer::last_output_ptr = nullptr;
+float* Sample_buffer::last_input_ptr = nullptr;
+
+void Sample_buffer::init() {
+	base_ptr = (float*) pvPortMalloc(100 * sizeof(float));
+}
+
+
+
+
 
 int main(void)
 {
@@ -60,10 +79,15 @@ extern "C" {
 	}
 }
 
+void TIM2_IRQHandler_cpp(void) {
+	//IRQ_objects::sample_tick++;
+}
+
+
 extern "C" {
 	void TIM2_IRQHandler(void)
 	{
-		while (1) ;
+		TIM2_IRQHandler_cpp();
 		HAL_TIM_IRQHandler(&(Tim::htim2));
 	}
 }
