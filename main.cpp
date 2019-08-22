@@ -1,12 +1,8 @@
-/*Interrupt for audio output?
- *2 dma channels
- *can we pre-emp systic handler?
- *
- *output single char
- *then do stream operator
- *
+/*
  **/
 #include "main.h"
+#include <math.h>
+
 
 osThreadId LEDThread1Handle, LEDThread2Handle;
 
@@ -15,46 +11,35 @@ static void LED_Thread2(void const *argument);
 
 void SystemClock_Config(void);
 
-struct Float_optional {
-	float value ;
-	bool valid ;
-};
-
-#define SAMPLE_BUFFER_LENGTH 256
-class Sample_buffer {
-	//const static  uint32_t buffer_size;
-	static float buffer[SAMPLE_BUFFER_LENGTH];
-	static uint32_t last_output_index; 
-	static uint32_t last_input_index;
+#define NUM_SAMPLES_PER_WAVE 4096
+class Waves {
+	static float sine_array[NUM_SAMPLES_PER_WAVE];
 public:
-	static bool add_sample(float);
-	static Float_optional get_sample();
+	static void init(void);
+	static float get_sample_with_sample_number_sine(uint32_t);
 };
 
-uint32_t Sample_buffer::last_output_index {0};
-uint32_t Sample_buffer::last_input_index {0};
+//	static float sine_array[NUM_SAMPLES_PER_WAVE];
+float Waves::sine_array[NUM_SAMPLES_PER_WAVE] {};
 
-bool Sample_buffer::add_sample(float sample) {
-	uint32_t this_input_index = last_input_index + 1;
-	if (this_input_index == SAMPLE_BUFFER_LENGTH)
-		this_input_index = 0;
-	if (this_input_index == last_output_index)
-		//We have caught up with the output buffer and can't add any more samples
-		return false;
-	buffer[this_input_index] = sample;
-	last_input_index = this_input_index;
-	return true; //(success)
+
+	
+void Waves::init() {
+	uint32_t i = 0;
+	for (i = 0; i < NUM_SAMPLES_PER_WAVE; i++) {
+		float phase_radians = (float)i / (float) NUM_SAMPLES_PER_WAVE * (float)  6.28318530718;
+		float value = (float) sin(phase_radians);
+		sine_array[i] = value;	
+	}
 }
-Float_optional Sample_buffer::get_sample() {
-	if (last_output_index == last_input_index) 
-		//There are no new samples
-		//The false in the struct return will indicate failure
-		return Float_optional {(float) 0.0, false}	;
-	uint32_t this_output_index = last_output_index + 1;
-	if (this_output_index == SAMPLE_BUFFER_LENGTH)
-		this_output_index = 0;
-	return Float_optional { buffer[this_output_index], true };
+
+float Waves::get_sample_with_sample_number_sine(uint32_t sample_number) {
+	if (sample_number < NUM_SAMPLES_PER_WAVE)
+		return sine_array[sample_number];
+	else
+		return 0;	
 }
+	
 
 int main(void)
 {
@@ -63,10 +48,29 @@ int main(void)
 	Dac_1::init();
 	Usart_2::init();
 	Tim::init();
+	Waves::init();
 	char led1[] = "LED1"; 
 	char led2[] = "LED2"; 
-	Dac_1::set_value(0xFFF);
-	Usart_2::transmit_byte('X');
+	//Dac_1::set_value(0xFFF);
+	//Usart_2::transmit_byte('X');
+	
+	
+	uint32_t test_sample_number {0};
+	float test_sample {0};
+	float test_sample_rel {0};
+	bool buffer_add_success {false};
+	
+	
+	while(1) {
+		test_sample = Waves::get_sample_with_sample_number_sine(test_sample_number);
+		test_sample_rel = test_sample * (float) 0.5 + (float) 0.5; 	
+
+		buffer_add_success = Sample_buffer::add_sample(test_sample_rel);
+		if (buffer_add_success)
+			test_sample_number++;
+		if (test_sample_number == NUM_SAMPLES_PER_WAVE)
+			test_sample_number = 0;
+	}
 	
 	/* Thread 1 definition */
 	const osThreadDef_t os_thread_def_LED1 = \
@@ -93,15 +97,17 @@ int main(void)
 extern "C" {
 	void SysTick_Handler(void)
 	{
-		Dac_1::set_value_fast(0xFFF);
+		//Dac_1::set_value_fast(0xFFF);
 		HAL_IncTick();
 		osSystickHandler();
-		Dac_1::set_value_fast(0x000);
+		//Dac_1::set_value_fast(0x000);
 	}
 }
 
 void TIM2_IRQHandler_cpp(void) {
 	//IRQ_objects::sample_tick++;
+	float sample = Sample_buffer::get_next_sample().value;
+	Dac_1::set_value_rel((float) sample);
 }
 
 
@@ -117,8 +123,8 @@ static void LED_Thread1(void const *argument)
 {
 	(void) argument;
 	
-	while (1)
-		Dac_1::set_value_fast(0x7FF);
+	//while (1) ;
+		//Dac_1::set_value_fast(0x7FF);
 
 }
 
@@ -128,8 +134,8 @@ static void LED_Thread2(void const *argument)
 
 	(void) argument;
 	
-	while(1)
-		Dac_1::set_value_fast(0xFFF);
+	//while (1) ;
+		//Dac_1::set_value_fast(0xFFF);
 
 	
 }

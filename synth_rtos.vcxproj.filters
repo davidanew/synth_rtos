@@ -795,6 +795,9 @@
     <ClCompile Include="Tim.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="Sample_buffer.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dac.h">
@@ -808,6 +811,9 @@
     </ClInclude>
     <ClInclude Include="Tim.h">
       <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sample_buffer.h">
+      <Filter>Source files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

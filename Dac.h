@@ -6,7 +6,7 @@
 
 class Dac {
 
-public:	
+protected:	
 	static void init(DAC_HandleTypeDef& hdac, uint32_t channel_arg); 
 	static void set_value_rel(DAC_HandleTypeDef& hdac, uint32_t channel, float value_rel);
 	static void set_value(DAC_HandleTypeDef& hdac, uint32_t channel, uint32_t value_rel);
@@ -19,7 +19,8 @@ public:
 	static const uint32_t dac1_fast_ptr = DAC_BASE + 0x8;
 
 	static void init() {Dac::init(hdac , DAC_CHANNEL_1);}
-	static void set_value(uint32_t dac_value) { Dac::set_value(hdac, DAC_CHANNEL_1, dac_value);};	
+	static void set_value(uint32_t dac_value) { Dac::set_value(hdac, DAC_CHANNEL_1, dac_value);};
+	static void set_value_rel(float dac_value)  {Dac::set_value_rel(hdac, DAC_CHANNEL_1, dac_value);};
 	static void set_value_fast(uint32_t );
 
 };

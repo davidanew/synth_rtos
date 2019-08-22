@@ -57,6 +57,7 @@
   <ItemGroup>
     <ClCompile Include="Dac.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Sample_buffer.cpp" />
     <ClCompile Include="system_stm32f4xx.c" />
     <ClCompile Include="Tim.cpp" />
     <ClCompile Include="Usart.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Dac.h" />
     <ClInclude Include="FreeRTOSConfig.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="Sample_buffer.h" />
     <ClInclude Include="Tim.h" />
     <ClInclude Include="Usart.h" />
     <ClInclude Include="stm32f4xx_hal_conf.h" />
