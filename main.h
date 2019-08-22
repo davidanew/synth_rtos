@@ -6,4 +6,6 @@
 #include "Usart.h"
 #include "Tim.h"
 #include "Sample_buffer.h"
+#include "Waves.h"
+#include "Tests.h"
 

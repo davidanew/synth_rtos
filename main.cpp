@@ -1,7 +1,6 @@
 /*
  **/
 #include "main.h"
-#include <math.h>
 
 
 osThreadId LEDThread1Handle, LEDThread2Handle;
@@ -11,34 +10,8 @@ static void LED_Thread2(void const *argument);
 
 void SystemClock_Config(void);
 
-#define NUM_SAMPLES_PER_WAVE 4096
-class Waves {
-	static float sine_array[NUM_SAMPLES_PER_WAVE];
-public:
-	static void init(void);
-	static float get_sample_with_sample_number_sine(uint32_t);
-};
-
-//	static float sine_array[NUM_SAMPLES_PER_WAVE];
-float Waves::sine_array[NUM_SAMPLES_PER_WAVE] {};
 
 
-	
-void Waves::init() {
-	uint32_t i = 0;
-	for (i = 0; i < NUM_SAMPLES_PER_WAVE; i++) {
-		float phase_radians = (float)i / (float) NUM_SAMPLES_PER_WAVE * (float)  6.28318530718;
-		float value = (float) sin(phase_radians);
-		sine_array[i] = value;	
-	}
-}
-
-float Waves::get_sample_with_sample_number_sine(uint32_t sample_number) {
-	if (sample_number < NUM_SAMPLES_PER_WAVE)
-		return sine_array[sample_number];
-	else
-		return 0;	
-}
 	
 
 int main(void)
@@ -51,27 +24,12 @@ int main(void)
 	Waves::init();
 	char led1[] = "LED1"; 
 	char led2[] = "LED2"; 
-	//Dac_1::set_value(0xFFF);
-	//Usart_2::transmit_byte('X');
 	
-	
-	uint32_t test_sample_number {0};
-	float test_sample {0};
-	float test_sample_rel {0};
-	bool buffer_add_success {false};
-	
-	
-	while(1) {
-		test_sample = Waves::get_sample_with_sample_number_sine(test_sample_number);
-		test_sample_rel = test_sample * (float) 0.5 + (float) 0.5; 	
+	Tests::output_sine();
 
-		buffer_add_success = Sample_buffer::add_sample(test_sample_rel);
-		if (buffer_add_success)
-			test_sample_number++;
-		if (test_sample_number == NUM_SAMPLES_PER_WAVE)
-			test_sample_number = 0;
-	}
 	
+
+
 	/* Thread 1 definition */
 	const osThreadDef_t os_thread_def_LED1 = \
      { led1, LED_Thread1, osPriorityNormal, 0, configMINIMAL_STACK_SIZE };

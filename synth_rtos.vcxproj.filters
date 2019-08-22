@@ -798,6 +798,12 @@
     <ClCompile Include="Sample_buffer.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="Waves.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dac.h">
@@ -813,6 +819,12 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="Sample_buffer.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="Waves.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests.h">
       <Filter>Source files</Filter>
     </ClInclude>
   </ItemGroup>
