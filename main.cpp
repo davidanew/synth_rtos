@@ -1,43 +1,49 @@
-/*
- **/
+
 #include "main.h"
 
-
-//osThreadId LEDThread1Handle, LEDThread2Handle;
-
 static void thread1(void *);
+static void thread2(void *);
 
 void SystemClock_Config(void);
 
-//TaskHandle_t my_handle=NULL;
+class Global_parameters {};
 
-//
-//static void prvQueueReceiveTask(void *pvParameters)
-//{
-	//unsigned long ulReceivedValue;
-//
-	///* Check the task parameter is as expected. */
-	//configASSERT(((unsigned long) pvParameters) == mainQUEUE_RECEIVE_PARAMETER);
-//
-	//for (;;)
-	//{
-		///* Wait until something arrives in the queue - this task will block
-		//indefinitely provided INCLUDE_vTaskSuspend is set to 1 in
-		//FreeRTOSConfig.h. */
-		//xQueueReceive(xQueue, &ulReceivedValue, portMAX_DELAY);
-//
-		///*  To get here something must have been received from the queue, but
-		//is it the expected value?  If it is, toggle the LED. */
-		//if (ulReceivedValue == 100UL)
-		//{
-			//vParTestToggleLED(LED1);
-			//ulReceivedValue = 0U;
-		//}
-	//}
-//}
-//
-//#define mainQUEUE_RECEIVE_PARAMETER			( 0x22UL )
-//#define mainQUEUE_RECEIVE_TASK_PRIORITY		( tskIDLE_PRIORITY + 2 )
+enum wave_type { sine_wave };
+
+class Voice {
+	Global_parameters global_parameters;
+	wave_type wave_1 {sine_wave};
+	wave_type wave_2 {sine_wave};
+	//Frequencies for both voices
+	float freq_1 {1000}	;
+	float freq_2 {1000}	;
+	//Shared velocity set by keypress
+	float velocity {0}	;
+	////Class needs to store previous sample tick value
+	////The get sample funtion gets passed the current sample tick
+	////So then the correct sample can be calculated
+	//uint64_t previous_sample_tick {0}
+	//;
+	////Used in sample calculation
+	////Possibly these can be local to the method
+	//float phase_rel_1 {0};
+	//float phase_rel_2 {0};
+	////How much the phase is updated per sample tick
+	//float phase_rel_per_tick_1 {0};
+	//float phase_rel_per_tick_2 {0};
+public:		
+	//Voice(const Global_parameters&, const uint32_t&, const float&);
+	//Voice() = default;
+	////automatic variables used for pointers, these three definitions left in for debugging
+	//~Voice() = default;
+	//Voice(const Voice &source) = default;
+	//Voice& operator=(const Voice& rhs) = default;
+	//float update_and_get_sample(const uint64_t sample_tick);
+	
+};
+
+
+
 
 int main(void)
 {
@@ -47,46 +53,11 @@ int main(void)
 	Usart_2::init();
 	Tim::init();
 	Waves::init();
-	
 	//Tests::output_sine();
-
 	xTaskCreate(thread1, "thread1", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
-	
-	//xTaskCreate( prvQueueReceiveTask,
-		///* The function that implements the task. */
-			//"Rx",
-		///* The text name assigned to the task - for debug only as it is not used by the kernel. */
-			//configMINIMAL_STACK_SIZE,
-		///* The size of the stack to allocate to the task. */
-			//(void *) mainQUEUE_RECEIVE_PARAMETER,
-		///* The parameter passed to the task - just to check the functionality. */
-			//mainQUEUE_RECEIVE_TASK_PRIORITY,
-		///* The priority assigned to the task. */
-			//NULL);				
-	
-	
-	//char led1[] = "LED1"; 
-	//char led2[] = "LED2"; 
-	//
-//
-	///* Thread 1 definition */
-	//const osThreadDef_t os_thread_def_LED1 = \
-     //{ led1, LED_Thread1, osPriorityNormal, 0, configMINIMAL_STACK_SIZE };
-  //
-	///*  Thread 2 definition */
-	//const osThreadDef_t os_thread_def_LED2 = \
-	//{ led2, LED_Thread2, osPriorityNormal, 0, configMINIMAL_STACK_SIZE };
-  //
-	///* Start thread 1 */	
-	//LEDThread1Handle = osThreadCreate(&os_thread_def_LED1, NULL);
-//
-	///* Start thread 2 */
-	//LEDThread2Handle = osThreadCreate(&os_thread_def_LED2, NULL);
-//
-	///* Start scheduler */
-	//osKernelStart();
-	vTaskStartScheduler();
+	xTaskCreate(thread2, "dummy_test", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
 
+	vTaskStartScheduler();
 	 /* We should never get here as control is now taken by the scheduler */
 	for (;;);
 }
@@ -95,17 +66,14 @@ int main(void)
 extern "C" {
 	void SysTick_Handler(void)
 	{
-		//Dac_1::set_value_fast(0xFFF);
 		HAL_IncTick();
 		osSystickHandler();
-		//xPortSysTickHandler();
-		//Dac_1::set_value_fast(0x000);
 	}
 }
 
 void TIM2_IRQHandler_cpp(void) {
-	//IRQ_objects::sample_tick++;
 	float sample = Sample_buffer::get_next_sample().value;
+	//TODO: Check optional
 	Dac_1::set_value_rel((float) sample);
 }
 
@@ -122,18 +90,14 @@ static void thread1(void *argument)
 {
 	(void) argument;
 	
-	//while (1) ;
-	//Dac_1::set_value_fast(0x7FF);
 	uint32_t test_sample_number {0}	;
 	float test_sample {0};
 	float test_sample_rel {0};
 	bool buffer_add_success {false};
 	
-	
 	while (1) {
 		test_sample = Waves::get_sample_with_sample_number_sine(test_sample_number);
 		test_sample_rel = test_sample * (float) 0.5 + (float) 0.5; 	
-
 		buffer_add_success = Sample_buffer::add_sample(test_sample_rel);
 		if (!buffer_add_success)
 			taskYIELD()
@@ -142,21 +106,13 @@ static void thread1(void *argument)
 		if (test_sample_number == NUM_SAMPLES_PER_WAVE)
 			test_sample_number = 0;
 	}
-
 }
 
-
-//static void LED_Thread2(void const *argument)
-//{
-//
-	//(void) argument;
-	//
-	////while (1) ;
-		////Dac_1::set_value_fast(0xFFF);
-//
-	//
-//}
-
+static void thread2(void *argument)
+{
+	(void) argument;
+	while (1) ;
+}
 
 //Mainly autogenerated code
 //180MHz clock
