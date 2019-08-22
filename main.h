@@ -1,5 +1,9 @@
 #pragma once
 
+#include "FreeRTOS.h"
+#include "task.h"
+//#include "port.h"
+
 #include <stm32f4xx_hal.h>
 #include <../CMSIS_RTOS/cmsis_os.h>
 #include "Dac.h"
