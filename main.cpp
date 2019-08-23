@@ -3,6 +3,8 @@
 static void thread1(void *);
 static void thread2(void *);
 void SystemClock_Config(void);
+QueueHandle_t queue_handle;
+
 
 int main(void)
 {
@@ -14,7 +16,7 @@ int main(void)
 	Waves::init();
 	//Tests::output_sine();
 	BaseType_t taskCreateReturn;
-	
+	queue_handle = xQueueCreate(10,sizeof(uint8_t));
 	taskCreateReturn = xTaskCreate(thread1, "thread1", 1024, NULL, 2, NULL);
 	
 	if (taskCreateReturn != pdPASS)
@@ -68,9 +70,11 @@ static void thread1(void *argument)
 	Voice voice_array[NUM_VOICES];
 	uint64_t sample_number {0};
 	Sample sample;
+	BaseType_t xQueueReceiveReturn;
+	uint8_t queue_message;
 
 	//TODO: velocity is a byte?
-	voice_array[0].turn_on(global_parameters, 1000, 1);
+	//voice_array[0].turn_on(global_parameters, 1000, 1);
 	
 	while (1) {
 		if(sample.state == invalid) {
@@ -97,12 +101,24 @@ static void thread1(void *argument)
 		else 
 			//Should never happen
 			while(1);
+		
+		xQueueReceiveReturn = xQueueReceive(queue_handle,&queue_message,0);
+		if (xQueueReceiveReturn == pdTRUE) {
+			voice_array[0].turn_on(global_parameters, 1000, 1);
+
+		}
+		
 	}
 }
 
 static void thread2(void *argument)
 {
 	(void) argument;
+	BaseType_t xQueueSendReturn;
+	uint8_t message {0};
+	//TODO put in proper wait time
+
+	xQueueSendReturn = xQueueSendToFront(queue_handle,&message,999);
 	while (1) ;
 }
 
@@ -126,7 +142,7 @@ void SystemClock_Config(void)
 	RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
 	RCC_OscInitStruct.PLL.PLLM = 16;
 	//Tuned for my microcontroller
-  RCC_OscInitStruct.PLL.PLLN = 374;
+	RCC_OscInitStruct.PLL.PLLN = 374;
 	RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
 	RCC_OscInitStruct.PLL.PLLQ = 2;
 	RCC_OscInitStruct.PLL.PLLR = 2;
