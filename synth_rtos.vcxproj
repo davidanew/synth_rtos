@@ -62,8 +62,11 @@
     <ClCompile Include="Tests.cpp" />
     <ClCompile Include="Tim.cpp" />
     <ClCompile Include="Usart.cpp" />
+    <ClCompile Include="Voice.cpp" />
     <ClCompile Include="Waves.cpp" />
+    <ClInclude Include="Global_parameters.h" />
     <ClInclude Include="Tests.h" />
+    <ClInclude Include="Voice.h" />
     <ClInclude Include="Waves.h" />
     <None Include="stm32.props" />
     <ClCompile Include="$(BSP_ROOT)\STM32F4xxxx\StartupFiles\startup_stm32f446xx.c" />

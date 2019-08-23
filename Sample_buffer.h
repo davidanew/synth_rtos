@@ -16,6 +16,7 @@ class Sample_buffer {
 	static uint32_t last_output_index; 
 	static uint32_t last_input_index;
 public:
+	static bool is_
 	static bool add_sample(float);
 	static Float_optional get_next_sample();
 };

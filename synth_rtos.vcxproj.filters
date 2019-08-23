@@ -804,6 +804,9 @@
     <ClCompile Include="Tests.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="Voice.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dac.h">
@@ -825,6 +828,12 @@
       <Filter>Source files</Filter>
     </ClInclude>
     <ClInclude Include="Tests.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="Voice.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="Global_parameters.h">
       <Filter>Source files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -12,4 +12,6 @@
 #include "Sample_buffer.h"
 #include "Waves.h"
 #include "Tests.h"
+#include "Voice.h"
+#include "Global_parameters.h"
 
