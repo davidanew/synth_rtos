@@ -1,9 +1,6 @@
 #include "Waves.h"
 
-
 float Waves::sine_array[NUM_SAMPLES_PER_WAVE] {};
-
-
 	
 void Waves::init() {
 	uint32_t i = 0;
@@ -14,9 +11,20 @@ void Waves::init() {
 	}
 }
 
-float Waves::get_sample_with_sample_number_sine(uint32_t sample_number) {
-	if (sample_number < NUM_SAMPLES_PER_WAVE)
-		return sine_array[sample_number];
+float Waves::get_sample_with_sample_number_sine(uint32_t location) {
+	if (location < NUM_SAMPLES_PER_WAVE)
+		return sine_array[location];
 	else
 		return 0;	
+}
+
+float Waves::get_sample_with_phase_rel_sine(float phase_rel){
+	uint32_t location = uint32_t(phase_rel * (float)(NUM_SAMPLES_PER_WAVE - 1));
+	float value {0};
+	if (location < NUM_SAMPLES_PER_WAVE) {
+		value = sine_array[location];
+		return value;
+	}
+	else //error
+		while(1);
 }

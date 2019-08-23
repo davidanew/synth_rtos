@@ -1,15 +1,8 @@
-
 #include "main.h"
 
 static void thread1(void *);
 static void thread2(void *);
-
 void SystemClock_Config(void);
-
-
-
-
-
 
 int main(void)
 {
@@ -20,13 +13,19 @@ int main(void)
 	Tim::init();
 	Waves::init();
 	//Tests::output_sine();
-	xTaskCreate(thread1, "thread1", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
+	BaseType_t taskCreateReturn;
+	
+	taskCreateReturn = xTaskCreate(thread1, "thread1", 1024, NULL, 2, NULL);
+	
+	if (taskCreateReturn != pdPASS)
+		//error
+		while(1);
+	
 	xTaskCreate(thread2, "dummy_test", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
 	vTaskStartScheduler();
 	 /* We should never get here as control is now taken by the scheduler */
 	for (;;);
 }
-
 
 extern "C" {
 	void SysTick_Handler(void)
@@ -51,81 +50,53 @@ extern "C" {
 	}
 }
 
-#define NUM_VOICES 16
+#define NUM_VOICES 1
+
+enum Sample_value_state { calculated, invalid };
+
+struct Sample {
+	float value {0};
+	Sample_value_state state {invalid};	
+};
 
 static void thread1(void *argument)
 {
 	(void) argument;
 	
-	//uint32_t test_sample_number {0}	;
-	//float test_sample {0};
-	//float test_sample_rel {0};
-	//bool buffer_add_success {false};
-	//
-	
 	Global_parameters global_parameters;
 	//All voices will be initialised off
 	Voice voice_array[NUM_VOICES];
 	uint64_t sample_number {0};
-	
-	//global parameters. 
-//have at task level
-//pass to voice when note on
-//how does run loop work?
-// will be asyncronous
-	
-	
+	Sample sample;
 
 	//TODO: velocity is a byte?
-	voice_array[0].turn_on(global_parameters, 1000, 255);
-
-
-
-
-
-	
+	voice_array[0].turn_on(global_parameters, 1000, 1);
 	
 	while (1) {
-		//this will be running all the time, filling in the gaps to fill the queue
-		//how about adding voice
-		//use rtos queue
-		
-		//if slot available
-		//calculate sample
-		//add new sample
-		//may not need float optional
-		//check for new message (this could be at start
-		
-		
-
-	
-		
-		
-		//at the m
-		uint32_t voice_index {0};
-		float total {0};
-		for (voice_index = 0 ; voice_index < NUM_VOICES; voice_index++) {
-			total += voice_array[voice_index].get_next_sample(
-				
-			
-			
-
-		
-			
+		if(sample.state == invalid) {
+			//we need to calculate a new sample
+			uint32_t voice_index {0};
+			float voice_sample {0};
+			float total {0};
+			for (voice_index = 0; voice_index < NUM_VOICES; voice_index++) {
+				voice_sample = voice_array[voice_index].get_next_sample(sample_number);
+				total += voice_sample;
+				sample_number++;
+			}	
+			sample.value = total;
+			sample.state = calculated;
 		}
-		
-		
-		
-		
-		//test_sample = Waves::get_sample_with_sample_number_sine(test_sample_number);
-		//test_sample_rel = test_sample * (float) 0.5 + (float) 0.5; 	
-		//buffer_add_success = Sample_buffer::add_sample(test_sample_rel);
-		//if (!buffer_add_success)
-			//taskYIELD()
-		//else
-			//test_sample_number++;
-		//if (test_sample_number == NUM_SAMPLES_PER_WAVE)
-			//test_sample_number = 0;
+		//This function should always be run as the sample should have been calculated by calculation above or in previous loop
+		if (sample.state == calculated) {
+			//attempt to write to buffer
+			bool buffer_add_success {false};
+			buffer_add_success = Sample_buffer::add_sample(sample.value * (float) 0.5 + (float) 0.5) ; 	
+			if (buffer_add_success)
+				sample.state = invalid;
+		}
+		else 
+			//Should never happen
+			while(1);
 	}
 }
 

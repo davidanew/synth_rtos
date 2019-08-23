@@ -123,7 +123,8 @@ VisualGDB/Debug/main.o: main.cpp main.h \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\_ansi.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\std_abs.h \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\stdlib.h \
- c:\sysgcc\arm-eabi\arm-eabi\sys-include\machine\stdlib.h Tests.h
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\machine\stdlib.h Tests.h Voice.h \
+ Global_parameters.h
 
 main.h:
 
@@ -386,3 +387,7 @@ c:\sysgcc\arm-eabi\arm-eabi\sys-include\stdlib.h:
 c:\sysgcc\arm-eabi\arm-eabi\sys-include\machine\stdlib.h:
 
 Tests.h:
+
+Voice.h:
+
+Global_parameters.h:
