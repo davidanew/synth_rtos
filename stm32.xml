@@ -18,7 +18,7 @@
       </KeyValue>
       <KeyValue>
         <Key>com.sysprogs.bspoptions.arm.floatmode</Key>
-        <Value>-mfloat-abi=hard</Value>
+        <Value>-mfloat-abi=soft</Value>
       </KeyValue>
       <KeyValue>
         <Key>com.sysprogs.mcuoptions.ignore_startup_file</Key>

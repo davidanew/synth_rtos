@@ -11,4 +11,6 @@ public:
 	static void init(void);
 	static float get_sample_with_sample_number_sine(uint32_t);
 	static float get_sample_with_phase_rel_sine(float);
+	//experimental
+	float sine_array_public[NUM_SAMPLES_PER_WAVE];
 };

@@ -105,16 +105,15 @@ VisualGDB/Debug/main.o: main.cpp main.h \
  Dac.h Usart.h Tim.h Sample_buffer.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\array \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\utility \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\c++config.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\os_defines.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\cpu_defines.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\c++config.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\os_defines.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\cpu_defines.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_relops.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_pair.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\move.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\concept_check.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\type_traits \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\initializer_list \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\stdexcept \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\exception \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\exception.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\exception_ptr.h \
@@ -124,6 +123,7 @@ VisualGDB/Debug/main.o: main.cpp main.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\hash_bytes.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\new \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\nested_exception.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\stdexcept \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\string \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stringfwd.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\memoryfwd.h \
@@ -155,10 +155,10 @@ VisualGDB/Debug/main.o: main.cpp main.h \
  c:\sysgcc\arm-eabi\lib\gcc\arm-eabi\7.2.0\include\stdarg.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\cstdint \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\allocator.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\c++allocator.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\c++allocator.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\ext\new_allocator.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\localefwd.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\c++locale.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\c++locale.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\clocale \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\locale.h \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\_ansi.h \
@@ -172,11 +172,15 @@ VisualGDB/Debug/main.o: main.cpp main.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\range_access.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\basic_string.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\ext\atomicity.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\gthr.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\gthr-default.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\atomic_word.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\gthr.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\gthr-default.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\atomic_word.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\ext\alloc_traits.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\alloc_traits.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\string_view \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\limits \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\functional_hash.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\string_view.tcc \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\ext\string_conversions.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\cstdlib \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\stdlib.h \
@@ -191,20 +195,34 @@ VisualGDB/Debug/main.o: main.cpp main.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\cerrno \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\errno.h \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\errno.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\functional_hash.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\basic_string.tcc \
  Waves.h c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\math.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\cmath \
- c:\sysgcc\arm-eabi\arm-eabi\sys-include\math.h Tests.h Voice.h \
- Global_parameters.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\math.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\specfun.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\gamma.tcc \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\special_function_util.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\bessel_function.tcc \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\special_function_util.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\beta_function.tcc \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\ell_integral.tcc \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\exp_integral.tcc \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\hypergeometric.tcc \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\legendre_function.tcc \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\modified_bessel_func.tcc \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\poly_hermite.tcc \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\poly_laguerre.tcc \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\riemann_zeta.tcc \
+ Tests.h Voice.h Global_parameters.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\optional \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\enable_special_members.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\algorithm \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_algo.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\algorithmfwd.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_heap.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_tempbuf.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_construct.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\uniform_int_dist.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\limits
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\uniform_int_dist.h
 
 main.h:
 
@@ -426,11 +444,11 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\array:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\utility:
 
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\c++config.h:
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\c++config.h:
 
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\os_defines.h:
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\os_defines.h:
 
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\cpu_defines.h:
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\cpu_defines.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_relops.h:
 
@@ -443,8 +461,6 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\concept_check.h:
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\type_traits:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\initializer_list:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\stdexcept:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\exception:
 
@@ -463,6 +479,8 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\hash_bytes.h:
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\new:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\nested_exception.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\stdexcept:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\string:
 
@@ -526,13 +544,13 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\cstdint:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\allocator.h:
 
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\c++allocator.h:
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\c++allocator.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\ext\new_allocator.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\localefwd.h:
 
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\c++locale.h:
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\c++locale.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\clocale:
 
@@ -560,15 +578,23 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\basic_string.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\ext\atomicity.h:
 
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\gthr.h:
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\gthr.h:
 
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\gthr-default.h:
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\gthr-default.h:
 
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\atomic_word.h:
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\atomic_word.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\ext\alloc_traits.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\alloc_traits.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\string_view:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\limits:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\functional_hash.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\string_view.tcc:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\ext\string_conversions.h:
 
@@ -598,8 +624,6 @@ c:\sysgcc\arm-eabi\arm-eabi\sys-include\errno.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\errno.h:
 
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\functional_hash.h:
-
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\basic_string.tcc:
 
 Waves.h:
@@ -610,11 +634,43 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\cmath:
 
 c:\sysgcc\arm-eabi\arm-eabi\sys-include\math.h:
 
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\specfun.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\gamma.tcc:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\special_function_util.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\bessel_function.tcc:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\special_function_util.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\beta_function.tcc:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\ell_integral.tcc:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\exp_integral.tcc:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\hypergeometric.tcc:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\legendre_function.tcc:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\modified_bessel_func.tcc:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\poly_hermite.tcc:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\poly_laguerre.tcc:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\riemann_zeta.tcc:
+
 Tests.h:
 
 Voice.h:
 
 Global_parameters.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\optional:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\enable_special_members.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\algorithm:
 
@@ -629,5 +685,3 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_tempbuf.h:
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_construct.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\uniform_int_dist.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\limits:

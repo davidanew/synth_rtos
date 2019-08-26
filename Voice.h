@@ -2,11 +2,13 @@
 #include <stm32f4xx_hal.h>
 #include "Global_parameters.h"
 #include "Waves.h"
+#include <optional>
 
 
 enum Voice_state{ on , off };
 
 class Voice {
+	
 	Global_parameters global_parameters;
 	wave_type wave_1 {sine_wave};
 	wave_type wave_2 {sine_wave};
@@ -33,4 +35,10 @@ public:
 	//Voice(const Global_parameters& global_parameters, const uint32_t& freq, const float &velocity);
 	void turn_on(const Global_parameters& global_parameters, const uint32_t& freq, const float &velocity);
 	float get_next_sample(const uint64_t sample_number);
+	//exprimental
+	std::optional<uint64_t> start_sample = std::nullopt;
+	wave_type wave_1_type {sine_wave}	;
+	wave_type wave_2_type {sine_wave}	;
+	float velocity_public {0};
+
 };

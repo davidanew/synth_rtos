@@ -67,10 +67,44 @@ extern "C" {
 
 enum Sample_value_state { calculated, invalid };
 
+//TODO: Rename this, maybe sample_and_state
 struct Sample {
 	float value {0};
 	Sample_value_state state {invalid};	
 };
+
+//TODO: no capital for Wave_type?
+//public array needs initialisation
+//
+//float calc_sample_for_wave(const uint64_t sample_number, const std::optional<uint64_t>& start_sample, wave_type this_wave_type, const Waves& waves) {
+	//
+	//uint32_t location 
+	//
+	//uint32_t location = uint32_t(phase_rel * (float)(NUM_SAMPLES_PER_WAVE - 1));
+	////const uint32_t location = 0;
+		//float value {0}
+	//;
+	//if (location < NUM_SAMPLES_PER_WAVE) {
+		//value = sine_array[location];
+		//return value;
+	//}
+	//else //error
+		//while(1);
+	//return (float) 0.0;
+//}
+//
+//
+////voice needs start sample
+//float calc_sample_for_voice(uint64_t sample_number, Voice& voice, Global_parameters& global_parameters, Waves waves) {
+	////global parameters calculations should be done in here
+	//const float sample_for_wave_1 = calc_sample_for_wave(sample_number, voice.start_sample, voice.wave_1_type, waves);
+	//const float sample_for_wave_2 = calc_sample_for_wave(sample_number, voice.start_sample, voice.wave_2_type, waves);
+	//return (float)(sample_for_wave_1 * global_parameters.ampl_1 + 
+				 //sample_for_wave_2 * global_parameters.ampl_2)
+				//* voice.velocity_public;	
+//}
+
+
 
 static void thread1(void *argument)
 {
@@ -102,6 +136,17 @@ static void thread1(void *argument)
 			*Dac_2::dac2_fast_ptr = 0xFFF;
 			
 			//const u_int32_t sample_number_start
+			
+			//std::for_each(voice_array.begin(),
+				//voice_array.end(),
+				//[&total, &sample_number](Voice& voice) {
+//
+					//total += calc_sample(sample_number,voice)
+					//sample_number++;				
+				//});
+			//
+			//
+			//
 
 
 			
