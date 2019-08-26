@@ -21,7 +21,19 @@ public:
 	static void init() {Dac::init(hdac , DAC_CHANNEL_1);}
 	static void set_value(uint32_t dac_value) { Dac::set_value(hdac, DAC_CHANNEL_1, dac_value);};
 	static void set_value_rel(float dac_value)  {Dac::set_value_rel(hdac, DAC_CHANNEL_1, dac_value);};
-	static void set_value_fast(uint32_t );
+	static void set_value_fast(uint32_t value);
+
+};
+
+class Dac_2 : public Dac {
+	static DAC_HandleTypeDef hdac;
+public:
+	//TODO: Do the same with dac1 ptr
+	static uint32_t * dac2_fast_ptr; // = (uint32_t *) DAC_BASE + 0x14;
+	static void init() {Dac::init(hdac, DAC_CHANNEL_2); }
+	static void set_value(uint32_t dac_value) { Dac::set_value(hdac, DAC_CHANNEL_2, dac_value); }	;
+	static void set_value_rel(float dac_value)  {Dac::set_value_rel(hdac, DAC_CHANNEL_2, dac_value); }	;
+	static void set_value_fast(uint32_t value);
 
 };
 

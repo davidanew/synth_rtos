@@ -74,5 +74,12 @@ void Dac_1::set_value_fast(uint32_t value) {
 	*(uint32_t *)dac1_fast_ptr = value;
 }
 
+DAC_HandleTypeDef Dac_2::hdac {};
 
 
+uint32_t * Dac_2::dac2_fast_ptr = (uint32_t *) (DAC_BASE + 0x14);
+
+
+void Dac_2::set_value_fast(uint32_t value) {
+	*dac2_fast_ptr = value;
+}

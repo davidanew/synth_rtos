@@ -6,14 +6,25 @@ void SystemClock_Config(void);
 QueueHandle_t queue_handle;
 
 
+
+void *malloc(size_t size)
+{
+	//no dynamic memory allocation
+	while (1) ;
+	return NULL;
+}
+
 int main(void)
 {
 	HAL_Init(); 
 	SystemClock_Config();
 	Dac_1::init();
+	Dac_2::init();
 	Usart_2::init();
 	Tim::init();
 	Waves::init();
+	//std::array<uint32_t,3> test_vector {1, 2, 3}	;
+	//uint32_t* my_ptr = (uint32_t*) malloc(sizeof(uint32_t));
 	//Tests::output_sine();
 	BaseType_t taskCreateReturn;
 	queue_handle = xQueueCreate(10,sizeof(uint8_t));
@@ -23,7 +34,7 @@ int main(void)
 		//error
 		while(1);
 	
-	xTaskCreate(thread2, "dummy_test", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
+	//xTaskCreate(thread2, "dummy_test", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
 	vTaskStartScheduler();
 	 /* We should never get here as control is now taken by the scheduler */
 	for (;;);
@@ -67,7 +78,8 @@ static void thread1(void *argument)
 	
 	Global_parameters global_parameters;
 	//All voices will be initialised off
-	Voice voice_array[NUM_VOICES];
+	//Voice voice_array[NUM_VOICES];
+	std::array<Voice,NUM_VOICES> voice_array;
 	uint64_t sample_number {0};
 	Sample sample;
 	BaseType_t xQueueReceiveReturn;
@@ -77,16 +89,44 @@ static void thread1(void *argument)
 	//voice_array[0].turn_on(global_parameters, 1000, 1);
 	
 	while (1) {
+		
+	
 		if(sample.state == invalid) {
 			//we need to calculate a new sample
 			uint32_t voice_index {0};
-			float voice_sample {0};
 			float total {0};
-			for (voice_index = 0; voice_index < NUM_VOICES; voice_index++) {
-				voice_sample = voice_array[voice_index].get_next_sample(sample_number);
-				total += voice_sample;
-				sample_number++;
-			}	
+			
+			voice_array[0].turn_on(global_parameters, 1000, 1);
+
+			
+			*Dac_2::dac2_fast_ptr = 0xFFF;
+			
+			//const u_int32_t sample_number_start
+
+
+			
+			std::for_each(voice_array.begin(),
+				voice_array.end(),
+				[&total, &sample_number](Voice& voice) {
+
+					total += voice.get_next_sample(sample_number);
+					sample_number++;				
+				});
+			
+			
+			
+			//float voice_sample {0};
+//
+			//for (voice_index = 0; voice_index < NUM_VOICES; voice_index++) {
+				//voice_sample = voice_array[voice_index].get_next_sample(sample_number);
+				//total += voice_sample;
+				//sample_number++;
+			//}	
+			//
+			//
+			
+			*Dac_2::dac2_fast_ptr = 0x000;
+			
 			sample.value = total;
 			sample.state = calculated;
 		}

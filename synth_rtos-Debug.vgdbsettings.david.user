@@ -9,54 +9,32 @@
       <Syscalls />
       <CXXCatchpoints />
     </CatchpointConfiguration>
-    <LiveWatches>
-      <LiveWatch>
-        <Expression>Sample_buffer::buffer</Expression>
-        <Settings xsi:type="GraphVisualWatchSettings">
-          <Type>Float32</Type>
-          <ElementCount>256</ElementCount>
-        </Settings>
-        <VisualizerID>com.sysprogs.visualwatch.graph</VisualizerID>
-      </LiveWatch>
-    </LiveWatches>
+    <LiveWatches />
     <MaskInterruptsWhileStepping>false</MaskInterruptsWhileStepping>
-    <MemoryWindowPreferences />
+    <MemoryWindowPreferences>
+      <MemoryWindowPreferences>
+        <ExpressionHistory>
+          <string>$sp</string>
+        </ExpressionHistory>
+        <SymbolicMode>true</SymbolicMode>
+        <TakeAddressMode>false</TakeAddressMode>
+        <Format>
+          <DataWidth>OneByte</DataWidth>
+          <DataFormat>Hexadecimal</DataFormat>
+          <TextFormat>ANSI</TextFormat>
+        </Format>
+        <LiveMemorySettings>
+          <Enabled>false</Enabled>
+          <BreakOnChanges>false</BreakOnChanges>
+          <AutoRefresh>false</AutoRefresh>
+          <RefreshTimeout>0</RefreshTimeout>
+        </LiveMemorySettings>
+        <ShowStatusBar>true</ShowStatusBar>
+        <DisplaySymbols>false</DisplaySymbols>
+      </MemoryWindowPreferences>
+    </MemoryWindowPreferences>
     <FavoriteEmbeddedRegisters />
-    <LiveVariables>
-      <LiveVariable>
-        <Expression>Sample_buffer::buffer</Expression>
-        <Type>Invalid</Type>
-        <Enabled>false</Enabled>
-        <Breakpoint>
-          <ComparisonMode>Equals</ComparisonMode>
-          <Enabled>false</Enabled>
-        </Breakpoint>
-        <Plot>false</Plot>
-        <IsCollapsed>true</IsCollapsed>
-      </LiveVariable>
-      <LiveVariable>
-        <Expression>Sample_buffer::last_output_index</Expression>
-        <Type>UInt32</Type>
-        <Enabled>false</Enabled>
-        <Breakpoint>
-          <ComparisonMode>Equals</ComparisonMode>
-          <Enabled>false</Enabled>
-        </Breakpoint>
-        <Plot>false</Plot>
-        <IsCollapsed>false</IsCollapsed>
-      </LiveVariable>
-      <LiveVariable>
-        <Expression>Sample_buffer::last_input_index</Expression>
-        <Type>UInt32</Type>
-        <Enabled>false</Enabled>
-        <Breakpoint>
-          <ComparisonMode>Equals</ComparisonMode>
-          <Enabled>false</Enabled>
-        </Breakpoint>
-        <Plot>false</Plot>
-        <IsCollapsed>false</IsCollapsed>
-      </LiveVariable>
-    </LiveVariables>
+    <LiveVariables />
     <NestedLiveVariableSettings>
       <LiveVariable>
         <Expression>(Sample_buffer::buffer)[0]</Expression>

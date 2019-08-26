@@ -1,6 +1,11 @@
 #include "Sample_buffer.h"
 
-float Sample_buffer::buffer[SAMPLE_BUFFER_LENGTH] {};
+//static float buffer[SAMPLE_BUFFER_LENGTH];
+//float Sample_buffer::buffer[SAMPLE_BUFFER_LENGTH] ;
+
+//static std::array<float, SAMPLE_BUFFER_LENGTH> buffer {};
+std::array<float, SAMPLE_BUFFER_LENGTH> Sample_buffer::buffer;
+
 uint32_t Sample_buffer::last_output_index {0};
 uint32_t Sample_buffer::last_input_index {0};
 

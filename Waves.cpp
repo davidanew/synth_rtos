@@ -20,6 +20,7 @@ float Waves::get_sample_with_sample_number_sine(uint32_t location) {
 
 float Waves::get_sample_with_phase_rel_sine(float phase_rel){
 	uint32_t location = uint32_t(phase_rel * (float)(NUM_SAMPLES_PER_WAVE - 1));
+//const uint32_t location = 0;
 	float value {0};
 	if (location < NUM_SAMPLES_PER_WAVE) {
 		value = sine_array[location];

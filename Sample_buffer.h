@@ -3,6 +3,8 @@
 extern "C" {
 	#include <stm32f4xx_hal.h>
 }
+#include <array>
+
 
 struct Float_optional {
 	float value;
@@ -11,8 +13,8 @@ struct Float_optional {
 
 #define SAMPLE_BUFFER_LENGTH 256
 class Sample_buffer {
-	//const static  uint32_t buffer_size;
-	static float buffer[SAMPLE_BUFFER_LENGTH];
+	//static float buffer[SAMPLE_BUFFER_LENGTH];
+	static std::array<float, SAMPLE_BUFFER_LENGTH> buffer;
 	static uint32_t last_output_index; 
 	static uint32_t last_input_index;
 public:

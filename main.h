@@ -14,4 +14,8 @@
 #include "Tests.h"
 #include "Voice.h"
 #include "Global_parameters.h"
+#include "array"
+#include "algorithm"
+
+
 

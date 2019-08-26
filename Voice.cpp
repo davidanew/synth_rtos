@@ -63,6 +63,7 @@ float Voice::get_next_sample(const uint64_t sample_number) {
 		break;
 	}
 	//TODO: if amplitude is zero and end of adsr envelope then turn off
+
 	return (float)(wave_1_value * global_parameters.ampl_1 + 
 					wave_2_value * global_parameters.ampl_2)
 	                * velocity;
