@@ -84,9 +84,6 @@
     <ClCompile Include="$(BSP_ROOT)\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.c">
       <Filter>Source files\Device-specific files\FreeRTOS</Filter>
     </ClCompile>
-    <ClCompile Include="$(BSP_ROOT)\FreeRTOS\Source\portable\GCC\ARM_CM3\port.c">
-      <Filter>Source files\Device-specific files\FreeRTOS</Filter>
-    </ClCompile>
     <ClCompile Include="$(BSP_ROOT)\FreeRTOS\Source\portable\MemMang\heap_4.c">
       <Filter>Source files\Device-specific files\FreeRTOS</Filter>
     </ClCompile>
@@ -409,9 +406,6 @@
       <Filter>Header files\Device-specific files\FreeRTOS</Filter>
     </ClInclude>
     <ClInclude Include="$(BSP_ROOT)\FreeRTOS\Source\include\timers.h">
-      <Filter>Header files\Device-specific files\FreeRTOS</Filter>
-    </ClInclude>
-    <ClInclude Include="$(BSP_ROOT)\FreeRTOS\Source\portable\GCC\ARM_CM3\portmacro.h">
       <Filter>Header files\Device-specific files\FreeRTOS</Filter>
     </ClInclude>
     <ClInclude Include="$(BSP_ROOT)\STM32F4xxxx\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h">
@@ -807,6 +801,12 @@
     <ClCompile Include="Voice.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="$(BSP_ROOT)\FreeRTOS\Source\portable\GCC\ARM_CM4F\port.c">
+      <Filter>Source files\Device-specific files\FreeRTOS</Filter>
+    </ClCompile>
+    <ClInclude Include="$(BSP_ROOT)\FreeRTOS\Source\portable\GCC\ARM_CM4F\portmacro.h">
+      <Filter>Header files\Device-specific files\FreeRTOS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dac.h">
@@ -817,9 +817,6 @@
     </ClInclude>
     <ClInclude Include="main.h">
       <Filter>Source files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tim.h">
-      <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="Sample_buffer.h">
       <Filter>Source files</Filter>
@@ -834,6 +831,9 @@
       <Filter>Source files</Filter>
     </ClInclude>
     <ClInclude Include="Global_parameters.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tim.h">
       <Filter>Source files</Filter>
     </ClInclude>
   </ItemGroup>

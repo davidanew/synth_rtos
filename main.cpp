@@ -14,8 +14,25 @@ void *malloc(size_t size)
 	return NULL;
 }
 
+extern "C" {
+	
+	void vApplicationMallocFailedHook(void)
+	{
+		__set_PRIMASK(1);
+		for (;  ;) ;
+	}
+
+	void vApplicationStackOverflowHook( TaskHandle_t xTask,signed char *pcTaskName)
+	{
+		__set_PRIMASK(1);
+		for (;  ;) ;
+	}
+}
+
+
 int main(void)
 {
+	//taskENTER_CRITICAL();
 	HAL_Init(); 
 	SystemClock_Config();
 	Dac_1::init();
@@ -28,11 +45,13 @@ int main(void)
 	//Tests::output_sine();
 	BaseType_t taskCreateReturn;
 	queue_handle = xQueueCreate(10,sizeof(uint8_t));
-	taskCreateReturn = xTaskCreate(thread1, "thread1", 1024, NULL, 2, NULL);
+	taskCreateReturn = xTaskCreate(thread1, "thread1", 2048, NULL, 2, NULL);
 	
-	if (taskCreateReturn != pdPASS)
-		//error
-		while(1);
+	//if (taskCreateReturn != pdPASS)
+		////error
+		//while(1);
+	
+	
 	
 	//xTaskCreate(thread2, "dummy_test", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
 	vTaskStartScheduler();
@@ -62,6 +81,16 @@ extern "C" {
 		HAL_TIM_IRQHandler(&(Tim::htim2));
 	}
 }
+
+extern "C" {
+	void NMI_Handler()                    {while (1) ;}	;
+	void HardFault_Handler()              {while (1) ;}	;
+	void MemManage_Handler()              {while (1) ;}	;
+	void BusFault_Handler()              {while (1) ;}	;
+	void UsageFault_Handler()             {while (1) ;}	;
+}
+
+
 
 #define NUM_VOICES 1
 
@@ -110,20 +139,54 @@ static void thread1(void *argument)
 {
 	(void) argument;
 	
+	uint64_t sample_number {0}	;
+
+
+	
+
+
+
+	Sample sample;
+	
+	BaseType_t xQueueReceiveReturn;
+	
+	uint8_t queue_message;
+	
+
+
+
+	
+	
+	//while (1) ;
+	
+	std::array<Voice, NUM_VOICES> voice_array;
+
+
+	
 	Global_parameters global_parameters;
+
+	
+
+
+
+
+	
+
+	
 	//All voices will be initialised off
 	//Voice voice_array[NUM_VOICES];
-	std::array<Voice,NUM_VOICES> voice_array;
-	uint64_t sample_number {0};
-	Sample sample;
-	BaseType_t xQueueReceiveReturn;
-	uint8_t queue_message;
+	
+
+	
+	
+
 
 	//TODO: velocity is a byte?
 	//voice_array[0].turn_on(global_parameters, 1000, 1);
 	
 	while (1) {
 		
+
 	
 		if(sample.state == invalid) {
 			//we need to calculate a new sample
@@ -187,7 +250,7 @@ static void thread1(void *argument)
 			//Should never happen
 			while(1);
 		
-		xQueueReceiveReturn = xQueueReceive(queue_handle,&queue_message,0);
+//		xQueueReceiveReturn = xQueueReceive(queue_handle,&queue_message,0);
 		if (xQueueReceiveReturn == pdTRUE) {
 			voice_array[0].turn_on(global_parameters, 1000, 1);
 
@@ -203,7 +266,7 @@ static void thread2(void *argument)
 	uint8_t message {0};
 	//TODO put in proper wait time
 
-	xQueueSendReturn = xQueueSendToFront(queue_handle,&message,999);
+	//xQueueSendReturn = xQueueSendToFront(queue_handle,&message,999);
 	while (1) ;
 }
 

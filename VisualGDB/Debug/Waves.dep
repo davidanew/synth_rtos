@@ -87,9 +87,9 @@ VisualGDB/Debug/Waves.o: Waves.cpp Waves.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F4xxxx/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_mmc.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\math.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\cmath \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\c++config.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\os_defines.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\cpu_defines.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\c++config.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\os_defines.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\cpu_defines.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\cpp_type_traits.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\ext\type_traits.h \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\math.h \
@@ -105,37 +105,7 @@ VisualGDB/Debug/Waves.o: Waves.cpp Waves.h \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\_ansi.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\std_abs.h \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\stdlib.h \
- c:\sysgcc\arm-eabi\arm-eabi\sys-include\machine\stdlib.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\specfun.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_algobase.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\functexcept.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\exception_defines.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\ext\numeric_traits.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_pair.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\move.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\concept_check.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\type_traits \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_iterator_base_types.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_iterator_base_funcs.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\debug\assertions.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_iterator.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\ptr_traits.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\debug\debug.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\predefined_ops.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\limits \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\gamma.tcc \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\special_function_util.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\bessel_function.tcc \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\special_function_util.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\beta_function.tcc \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\ell_integral.tcc \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\exp_integral.tcc \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\hypergeometric.tcc \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\legendre_function.tcc \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\modified_bessel_func.tcc \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\poly_hermite.tcc \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\poly_laguerre.tcc \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\riemann_zeta.tcc
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\machine\stdlib.h
 
 Waves.h:
 
@@ -315,11 +285,11 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\math.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\cmath:
 
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\c++config.h:
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\c++config.h:
 
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\os_defines.h:
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\os_defines.h:
 
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m4\bits\cpu_defines.h:
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\cpu_defines.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\cpp_type_traits.h:
 
@@ -352,63 +322,3 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\std_abs.h:
 c:\sysgcc\arm-eabi\arm-eabi\sys-include\stdlib.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\sys-include\machine\stdlib.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\specfun.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_algobase.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\functexcept.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\exception_defines.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\ext\numeric_traits.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_pair.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\move.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\concept_check.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\type_traits:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_iterator_base_types.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_iterator_base_funcs.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\debug\assertions.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_iterator.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\ptr_traits.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\debug\debug.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\predefined_ops.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\limits:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\gamma.tcc:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\special_function_util.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\bessel_function.tcc:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\special_function_util.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\beta_function.tcc:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\ell_integral.tcc:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\exp_integral.tcc:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\hypergeometric.tcc:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\legendre_function.tcc:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\modified_bessel_func.tcc:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\poly_hermite.tcc:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\poly_laguerre.tcc:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tr1\riemann_zeta.tcc:

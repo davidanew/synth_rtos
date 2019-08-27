@@ -15,6 +15,9 @@
       <MemoryWindowPreferences>
         <ExpressionHistory>
           <string>$sp</string>
+          <string>0x200048a0</string>
+          <string>0x200044e0</string>
+          <string>0x0</string>
         </ExpressionHistory>
         <SymbolicMode>true</SymbolicMode>
         <TakeAddressMode>false</TakeAddressMode>

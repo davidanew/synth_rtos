@@ -41,8 +41,25 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
-      <CPPLanguageStandard>CPP1Z</CPPLanguageStandard>
+      <CPPLanguageStandard>CPP11</CPPLanguageStandard>
+      <AdditionalIncludeDirectories>;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG=1;DEBUG_DEFAULT_INTERRUPT_HANDLERS;;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Optimization>O0</Optimization>
     </ClCompile>
+    <ToolchainSettingsContainer>
+      <FloatABI>
+      </FloatABI>
+    </ToolchainSettingsContainer>
+    <ToolchainSettingsContainer>
+      <ARMFPU>
+      </ARMFPU>
+    </ToolchainSettingsContainer>
+    <Link>
+      <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <LinkerScript />
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
     <ClCompile>
@@ -81,7 +98,6 @@
     <ClCompile Include="$(BSP_ROOT)\FreeRTOS\Source\tasks.c" />
     <ClCompile Include="$(BSP_ROOT)\FreeRTOS\Source\timers.c" />
     <ClCompile Include="$(BSP_ROOT)\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.c" />
-    <ClCompile Include="$(BSP_ROOT)\FreeRTOS\Source\portable\GCC\ARM_CM3\port.c" />
     <ClCompile Include="$(BSP_ROOT)\FreeRTOS\Source\portable\MemMang\heap_4.c" />
     <ClCompile Include="$(BSP_ROOT)\STM32F4xxxx\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c" />
     <ClCompile Include="$(BSP_ROOT)\STM32F4xxxx\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc.c" />
@@ -195,7 +211,6 @@
     <ClInclude Include="$(BSP_ROOT)\FreeRTOS\Source\include\stream_buffer.h" />
     <ClInclude Include="$(BSP_ROOT)\FreeRTOS\Source\include\task.h" />
     <ClInclude Include="$(BSP_ROOT)\FreeRTOS\Source\include\timers.h" />
-    <ClInclude Include="$(BSP_ROOT)\FreeRTOS\Source\portable\GCC\ARM_CM3\portmacro.h" />
     <ClInclude Include="$(BSP_ROOT)\STM32F4xxxx\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h" />
     <ClInclude Include="$(BSP_ROOT)\STM32F4xxxx\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h" />
     <ClInclude Include="$(BSP_ROOT)\STM32F4xxxx\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h" />
@@ -319,5 +334,7 @@
     <None Include="synth_rtos-Debug.vgdbsettings" />
     <None Include="synth_rtos-Release.vgdbsettings" />
     <None Include="stm32.xml" />
+    <ClCompile Include="$(BSP_ROOT)\FreeRTOS\Source\portable\GCC\ARM_CM4F\port.c" />
+    <ClInclude Include="$(BSP_ROOT)\FreeRTOS\Source\portable\GCC\ARM_CM4F\portmacro.h" />
   </ItemGroup>
 </Project>

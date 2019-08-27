@@ -31,7 +31,7 @@ uint32_t Sample_buffer::last_input_index {0};
 bool Sample_buffer::add_sample(float sample) {
 	//If this code is interrupted by tim isr they will be a 
 	//clash. So turn off interrupts
-	//__set_PRIMASK(1);
+	__set_PRIMASK(1);
 	uint32_t this_input_index = last_input_index + 1;
 	if (this_input_index == SAMPLE_BUFFER_LENGTH)
 		this_input_index = 0;

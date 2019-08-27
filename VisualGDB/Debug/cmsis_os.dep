@@ -27,7 +27,7 @@ VisualGDB/Debug/cmsis_os.o: \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/projdefs.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/portable.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/deprecated_definitions.h \
- C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Portable/gcc/ARM_CM3/portmacro.h \
+ C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Portable/gcc/ARM_CM4F/portmacro.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/mpu_wrappers.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/task.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/list.h \
@@ -94,7 +94,7 @@ C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.st
 
 C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/deprecated_definitions.h:
 
-C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Portable/gcc/ARM_CM3/portmacro.h:
+C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Portable/gcc/ARM_CM4F/portmacro.h:
 
 C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/mpu_wrappers.h:
 

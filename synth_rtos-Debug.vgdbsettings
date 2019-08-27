@@ -18,7 +18,11 @@
       </Version>
     </ToolchainID>
     <ProjectFile>synth_rtos.vcxproj</ProjectFile>
-    <ParallelJobCount>0</ParallelJobCount>
+    <RemoteBuildEnvironment>
+      <Records />
+      <EnvironmentSetupFiles />
+    </RemoteBuildEnvironment>
+    <ParallelJobCount>1</ParallelJobCount>
     <SuppressDirectoryChangeMessages>true</SuppressDirectoryChangeMessages>
   </Build>
   <CustomBuild>

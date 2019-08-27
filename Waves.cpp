@@ -5,8 +5,15 @@ float Waves::sine_array[NUM_SAMPLES_PER_WAVE] {};
 void Waves::init() {
 	uint32_t i = 0;
 	for (i = 0; i < NUM_SAMPLES_PER_WAVE; i++) {
-		float phase_radians = (float)i / (float) NUM_SAMPLES_PER_WAVE * (float)  6.28318530718;
+		float phase_radians = (float)((float)i / (float) NUM_SAMPLES_PER_WAVE * (float)  6.28318530718);
+		//float float_i = (float) i;
+		//float float_num_samples = (float) NUM_SAMPLES_PER_WAVE;
+		//float float_pi = (float)  6.28318530718;
+		
+		//float phase_radians = (float) 0.0;
 		float value = (float) sin(phase_radians);
+		//float value = (float) 0.0;
+
 		sine_array[i] = value;	
 	}
 }

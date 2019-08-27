@@ -18,7 +18,7 @@
       </KeyValue>
       <KeyValue>
         <Key>com.sysprogs.bspoptions.arm.floatmode</Key>
-        <Value>-mfloat-abi=soft</Value>
+        <Value>-mfloat-abi=hard</Value>
       </KeyValue>
       <KeyValue>
         <Key>com.sysprogs.mcuoptions.ignore_startup_file</Key>
@@ -36,12 +36,24 @@
   <BSPSourceFolderName>Device-specific files</BSPSourceFolderName>
   <MCUMakFile>stm32.mak</MCUMakFile>
   <ReferencedFrameworks>
+    <string>com.sysprogs.arm.stm32.freertos</string>
     <string>com.sysprogs.arm.stm32.hal</string>
     <string>com.sysprogs.arm.stm32.ll</string>
-    <string>com.sysprogs.arm.stm32.freertos</string>
   </ReferencedFrameworks>
   <FrameworkProperties>
     <Entries>
+      <KeyValue>
+        <Key>com.sysprogs.bspoptions.stm32.freertos.heap</Key>
+        <Value>heap_4</Value>
+      </KeyValue>
+      <KeyValue>
+        <Key>com.sysprogs.bspoptions.stm32.freertos.portcore</Key>
+        <Value>CM4F</Value>
+      </KeyValue>
+      <KeyValue>
+        <Key>com.sysprogs.bspoptions.stm32.freertos.cmsis</Key>
+        <Value>CMSIS_RTOS</Value>
+      </KeyValue>
       <KeyValue>
         <Key>com.sysprogs.stm32.legacy_hal_src</Key>
         <Value />
@@ -49,18 +61,6 @@
       <KeyValue>
         <Key>com.sysprogs.bspoptions.stm32.ll_driver</Key>
         <Value />
-      </KeyValue>
-      <KeyValue>
-        <Key>com.sysprogs.bspoptions.stm32.freertos.heap</Key>
-        <Value>heap_4</Value>
-      </KeyValue>
-      <KeyValue>
-        <Key>com.sysprogs.bspoptions.stm32.freertos.portcore</Key>
-        <Value>CM3</Value>
-      </KeyValue>
-      <KeyValue>
-        <Key>com.sysprogs.bspoptions.stm32.freertos.cmsis</Key>
-        <Value>CMSIS_RTOS</Value>
       </KeyValue>
     </Entries>
   </FrameworkProperties>
