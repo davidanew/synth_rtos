@@ -19,13 +19,13 @@ extern "C" {
 	void vApplicationMallocFailedHook(void)
 	{
 		__set_PRIMASK(1);
-		for (;  ;) ;
+		for (;;) ;
 	}
 
 	void vApplicationStackOverflowHook( TaskHandle_t xTask,signed char *pcTaskName)
 	{
 		__set_PRIMASK(1);
-		for (;  ;) ;
+		for (;;) ;
 	}
 }
 
@@ -40,20 +40,16 @@ int main(void)
 	Usart_2::init();
 	Tim::init();
 	Waves::init();
-	//std::array<uint32_t,3> test_vector {1, 2, 3}	;
-	//uint32_t* my_ptr = (uint32_t*) malloc(sizeof(uint32_t));
-	//Tests::output_sine();
 	BaseType_t taskCreateReturn;
 	queue_handle = xQueueCreate(10,sizeof(uint8_t));
-	taskCreateReturn = xTaskCreate(thread1, "thread1", 2048, NULL, 2, NULL);
-	
-	//if (taskCreateReturn != pdPASS)
-		////error
-		//while(1);
-	
-	
-	
-	//xTaskCreate(thread2, "dummy_test", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
+	taskCreateReturn = xTaskCreate(thread1, "thread1", 2048, NULL, 2, NULL);	
+	if (taskCreateReturn != pdPASS)
+		//error
+		while(1);
+	taskCreateReturn = xTaskCreate(thread2, "dummy_test", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
+	if (taskCreateReturn != pdPASS)
+		//error
+		while(1);
 	vTaskStartScheduler();
 	 /* We should never get here as control is now taken by the scheduler */
 	for (;;);
@@ -68,7 +64,7 @@ extern "C" {
 }
 
 void TIM2_IRQHandler_cpp(void) {
-	float sample = Sample_buffer::get_next_sample().value;
+	const float sample = Sample_buffer::get_next_sample().value;
 	//TODO: Check optional
 	Dac_1::set_value_rel((float) sample);
 }
@@ -90,172 +86,63 @@ extern "C" {
 	void UsageFault_Handler()             {while (1) ;}	;
 }
 
-
-
 #define NUM_VOICES 1
 
 enum Sample_value_state { calculated, invalid };
 
 //TODO: Rename this, maybe sample_and_state
+//maybe use std::optional
 struct Sample {
 	float value {0};
 	Sample_value_state state {invalid};	
 };
 
 //TODO: no capital for Wave_type?
-//public array needs initialisation
-//
-//float calc_sample_for_wave(const uint64_t sample_number, const std::optional<uint64_t>& start_sample, wave_type this_wave_type, const Waves& waves) {
-	//
-	//uint32_t location 
-	//
-	//uint32_t location = uint32_t(phase_rel * (float)(NUM_SAMPLES_PER_WAVE - 1));
-	////const uint32_t location = 0;
-		//float value {0}
-	//;
-	//if (location < NUM_SAMPLES_PER_WAVE) {
-		//value = sine_array[location];
-		//return value;
-	//}
-	//else //error
-		//while(1);
-	//return (float) 0.0;
-//}
-//
-//
-////voice needs start sample
-//float calc_sample_for_voice(uint64_t sample_number, Voice& voice, Global_parameters& global_parameters, Waves waves) {
-	////global parameters calculations should be done in here
-	//const float sample_for_wave_1 = calc_sample_for_wave(sample_number, voice.start_sample, voice.wave_1_type, waves);
-	//const float sample_for_wave_2 = calc_sample_for_wave(sample_number, voice.start_sample, voice.wave_2_type, waves);
-	//return (float)(sample_for_wave_1 * global_parameters.ampl_1 + 
-				 //sample_for_wave_2 * global_parameters.ampl_2)
-				//* voice.velocity_public;	
-//}
-
-
 
 static void thread1(void *argument)
 {
 	(void) argument;
-	
 	uint64_t sample_number {0}	;
-
-
-	
-
-
-
-	Sample sample;
-	
-	BaseType_t xQueueReceiveReturn;
-	
-	uint8_t queue_message;
-	
-
-
-
-	
-	
-	//while (1) ;
-	
+	//BaseType_t xQueueReceiveReturn;
 	std::array<Voice, NUM_VOICES> voice_array;
-
-
-	
 	Global_parameters global_parameters;
-
-	
-
-
-
-
-	
-
-	
 	//All voices will be initialised off
 	//Voice voice_array[NUM_VOICES];
-	
-
-	
-	
-
-
 	//TODO: velocity is a byte?
 	//voice_array[0].turn_on(global_parameters, 1000, 1);
-	
-	while (1) {
-		
+	Sample sample;
 
-	
+	while (1) {
 		if(sample.state == invalid) {
 			//we need to calculate a new sample
-			uint32_t voice_index {0};
+			//uint32_t voice_index {0};
 			float total {0};
-			
 			voice_array[0].turn_on(global_parameters, 1000, 1);
-
-			
 			*Dac_2::dac2_fast_ptr = 0xFFF;
-			
-			//const u_int32_t sample_number_start
-			
-			//std::for_each(voice_array.begin(),
-				//voice_array.end(),
-				//[&total, &sample_number](Voice& voice) {
-//
-					//total += calc_sample(sample_number,voice)
-					//sample_number++;				
-				//});
-			//
-			//
-			//
-
-
-			
-			std::for_each(voice_array.begin(),
-				voice_array.end(),
-				[&total, &sample_number](Voice& voice) {
-
-					total += voice.get_next_sample(sample_number);
-					sample_number++;				
-				});
-			
-			
-			
-			//float voice_sample {0};
-//
-			//for (voice_index = 0; voice_index < NUM_VOICES; voice_index++) {
-				//voice_sample = voice_array[voice_index].get_next_sample(sample_number);
-				//total += voice_sample;
-				//sample_number++;
-			//}	
-			//
-			//
-			
+			for (Voice& voice : voice_array) {
+				total += voice.get_next_sample(sample_number);
+			}
+			sample_number++;				
 			*Dac_2::dac2_fast_ptr = 0x000;
-			
 			sample.value = total;
 			sample.state = calculated;
 		}
 		//This function should always be run as the sample should have been calculated by calculation above or in previous loop
 		if (sample.state == calculated) {
 			//attempt to write to buffer
-			bool buffer_add_success {false};
-			buffer_add_success = Sample_buffer::add_sample(sample.value * (float) 0.5 + (float) 0.5) ; 	
+			//bool buffer_add_success {false};
+			const bool buffer_add_success = Sample_buffer::add_sample(sample.value * (float) 0.5 + (float) 0.5) ; 	
 			if (buffer_add_success)
 				sample.state = invalid;
 		}
 		else 
 			//Should never happen
 			while(1);
-		
-//		xQueueReceiveReturn = xQueueReceive(queue_handle,&queue_message,0);
+		uint8_t queue_message;
+		const BaseType_t xQueueReceiveReturn = xQueueReceive(queue_handle, &queue_message, 0);
 		if (xQueueReceiveReturn == pdTRUE) {
 			voice_array[0].turn_on(global_parameters, 1000, 1);
-
-		}
-		
+		}	
 	}
 }
 
@@ -265,8 +152,7 @@ static void thread2(void *argument)
 	BaseType_t xQueueSendReturn;
 	uint8_t message {0};
 	//TODO put in proper wait time
-
-	//xQueueSendReturn = xQueueSendToFront(queue_handle,&message,999);
+	xQueueSendReturn = xQueueSendToFront(queue_handle,&message,999);
 	while (1) ;
 }
 

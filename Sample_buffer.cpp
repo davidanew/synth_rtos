@@ -28,7 +28,7 @@ uint32_t Sample_buffer::last_input_index {0};
 //As this will be difficult to get right it was decided to just diable interruts on the add_sample
 //get sample is safe as it is run from a top priority interrupt
 
-bool Sample_buffer::add_sample(float sample) {
+bool Sample_buffer::add_sample(const float sample) {
 	//If this code is interrupted by tim isr they will be a 
 	//clash. So turn off interrupts
 	__set_PRIMASK(1);

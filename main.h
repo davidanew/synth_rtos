@@ -1,7 +1,7 @@
 #pragma once
 
-#include "FreeRTOS.h"
-#include "task.h"
+//#include "FreeRTOS.h"
+//#include "task.h"
 //#include "port.h"
 
 #include <stm32f4xx_hal.h>
