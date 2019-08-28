@@ -1,5 +1,7 @@
 #include "Usart.h"
 
+#include "FreeRTOSConfig.h";
+
 void Usart::transmit_byte(const UART_HandleTypeDef& huart, uint8_t byte) {
 	HAL_UART_Transmit((UART_HandleTypeDef *) &huart,  &byte, 1, HAL_MAX_DELAY) ;
 }
@@ -30,6 +32,8 @@ void Usart_2::init(void)
 	huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
 	huart2.Init.OverSampling = UART_OVERSAMPLING_16;
 	HAL_NVIC_SetPriority(USART2_IRQn, 0, 0);
+	//const uint32_t configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY {5}; // as per FreeRTOSConfig
+	NVIC_SetPriority(USART2_IRQn, configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY);
 	HAL_NVIC_EnableIRQ(USART2_IRQn);
 
 	if (HAL_UART_Init(&huart2) != HAL_OK)
@@ -48,11 +52,16 @@ void Usart_2::transmit_byte(uint8_t byte) {
 }
 
 
-uint8_t Usart_2::receive_byte() {
+uint32_t Usart_2::read_dr() {
 	//uint8_t buffer;
 	//HAL_UART_Receive(&huart2, &buffer, 1, HAL_MAX_DELAY);
 	//return buffer;
-	return (uint8_t) USART2->DR;
+	return (uint32_t) USART2->DR;
 	
 }
+
+bool Usart_2::is_flag_set(const uint32_t flag) {
+	return __HAL_UART_GET_FLAG(&Usart_2::huart2, flag);
+}
+
 

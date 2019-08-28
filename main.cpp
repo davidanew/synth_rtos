@@ -1,52 +1,39 @@
 #include "main.h"
 
+
 static void thread1(void *);
 static void thread2(void *);
 void SystemClock_Config(void);
 QueueHandle_t queue_handle;
 
 extern "C" {
-
 	void USART2_IRQHandler(void)
 	{
+		if(Usart_2::is_flag_set(UART_FLAG_RXNE)) {
+			const uint8_t byte = Usart_2::read_dr();
+			//Usart_2::transmit_byte(byte);
+			uint8_t message {0};
+			//xQueueSendToFront(queue_handle,&message,999);
+			BaseType_t xQueueSendReturn;
+			BaseType_t higherPriorityTaskWoken;
 
-		//while (1) ;
-		//TODO: need to clear interrupt?
-		
-		
-		//USART_GetITStatus(
-		
-		//    __HAL_UART_ENABLE_IT(huart, UART_IT_PE);
+	
+			//TODO put in proper wait time
+			//xQueueSendReturn = xQueueSendToFront(queue_handle,&message,999);
+			xQueueSendReturn = xQueueSendToFrontFromISR(queue_handle, &message, &higherPriorityTaskWoken);
 
-		/* Enable the UART Error Interrupt: (Frame error, noise error, overrun error) */
-		//__HAL_UART_ENABLE_IT(huart, UART_IT_ERR);
 
-		/* Enable the UART Data Register not empty Interrupt */
-		//__HAL_UART_ENABLE_IT(huart, UART_IT_RXNE);
-		
-		
-		//__HAL_UART_GET_FLAG(&Usart_2::huart2, UART_FLAG_RXNE);
-		
-		//const uint32_t flag = USART2->SR;
-		if(__HAL_UART_GET_FLAG(&Usart_2::huart2, UART_FLAG_RXNE) ) {
-			const uint8_t byte = Usart_2::receive_byte();
-			Usart_2::transmit_byte(byte);
+				//
+				 //BaseType_t xQueueSendToFrontFromISR(
+										 //QueueHandle_t xQueue,
+				//const void *pvItemToQueue,
+				//BaseType_t *pxHigherPriorityTaskWoken) ;
+				//
+				
 		}
 		else {
 			while (1) ;
 		}
-		
-		
-		
-		
-			
-		
-
-	
-		//Usart_2::transmit_byte(Usart_2::receive_byte());
-		//HAL_UART_IRQHandler(&Usart_2::huart2);
-
-
 	}
 }
 
@@ -102,7 +89,7 @@ static void thread1(void *argument)
 	//All voices will be initialised off
 	//Voice voice_array[NUM_VOICES];
 	//TODO: velocity is a byte?
-	voice_array[0].turn_on(global_parameters, 1000, 1);
+	//voice_array[0].turn_on(global_parameters, 1000, 1);
 	Sample sample;
 
 	while (1) {
@@ -145,7 +132,7 @@ static void thread2(void *argument)
 	BaseType_t xQueueSendReturn;
 	uint8_t message {0};
 	//TODO put in proper wait time
-	xQueueSendReturn = xQueueSendToFront(queue_handle,&message,999);
+	//xQueueSendReturn = xQueueSendToFront(queue_handle,&message,999);
 	while (1) ;
 }
 

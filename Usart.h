@@ -11,11 +11,14 @@ protected :
  * seen on a PC terminal*/
 
 class Usart_2 : public Usart {
-public:
 	static UART_HandleTypeDef huart2;
+
+public:
 
 	static void init();
 	static void transmit_byte(uint8_t);	
-	static uint8_t receive_byte();
+	static uint32_t read_dr();
+	static bool is_flag_set(const uint32_t flag);
+	
 };
 
