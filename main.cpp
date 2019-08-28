@@ -5,30 +5,50 @@ static void thread2(void *);
 void SystemClock_Config(void);
 QueueHandle_t queue_handle;
 
-
-
-void *malloc(size_t size)
-{
-	//no dynamic memory allocation
-	while (1) ;
-	return NULL;
-}
-
 extern "C" {
-	
-	void vApplicationMallocFailedHook(void)
-	{
-		__set_PRIMASK(1);
-		for (;;) ;
-	}
 
-	void vApplicationStackOverflowHook( TaskHandle_t xTask,signed char *pcTaskName)
+	void USART2_IRQHandler(void)
 	{
-		__set_PRIMASK(1);
-		for (;;) ;
+
+		//while (1) ;
+		//TODO: need to clear interrupt?
+		
+		
+		//USART_GetITStatus(
+		
+		//    __HAL_UART_ENABLE_IT(huart, UART_IT_PE);
+
+		/* Enable the UART Error Interrupt: (Frame error, noise error, overrun error) */
+		//__HAL_UART_ENABLE_IT(huart, UART_IT_ERR);
+
+		/* Enable the UART Data Register not empty Interrupt */
+		//__HAL_UART_ENABLE_IT(huart, UART_IT_RXNE);
+		
+		
+		//__HAL_UART_GET_FLAG(&Usart_2::huart2, UART_FLAG_RXNE);
+		
+		//const uint32_t flag = USART2->SR;
+		if(__HAL_UART_GET_FLAG(&Usart_2::huart2, UART_FLAG_RXNE) ) {
+			const uint8_t byte = Usart_2::receive_byte();
+			Usart_2::transmit_byte(byte);
+		}
+		else {
+			while (1) ;
+		}
+		
+		
+		
+		
+			
+		
+
+	
+		//Usart_2::transmit_byte(Usart_2::receive_byte());
+		//HAL_UART_IRQHandler(&Usart_2::huart2);
+
+
 	}
 }
-
 
 int main(void)
 {
@@ -40,13 +60,16 @@ int main(void)
 	Usart_2::init();
 	Tim::init();
 	Waves::init();
+	
+	//Usart_2::transmit_byte('x');
+	
 	BaseType_t taskCreateReturn;
 	queue_handle = xQueueCreate(10,sizeof(uint8_t));
-	taskCreateReturn = xTaskCreate(thread1, "thread1", 2048, NULL, 2, NULL);	
+	taskCreateReturn = xTaskCreate(thread1, "Add Voice and Calculate Sample", 2048, NULL, 2, NULL);	
 	if (taskCreateReturn != pdPASS)
 		//error
 		while(1);
-	taskCreateReturn = xTaskCreate(thread2, "dummy_test", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
+	taskCreateReturn = xTaskCreate(thread2, "Process Midi", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
 	if (taskCreateReturn != pdPASS)
 		//error
 		while(1);
@@ -55,36 +78,6 @@ int main(void)
 	for (;;);
 }
 
-extern "C" {
-	void SysTick_Handler(void)
-	{
-		HAL_IncTick();
-		osSystickHandler();
-	}
-}
-
-void TIM2_IRQHandler_cpp(void) {
-	const float sample = Sample_buffer::get_next_sample().value;
-	//TODO: Check optional
-	Dac_1::set_value_rel((float) sample);
-}
-
-
-extern "C" {
-	void TIM2_IRQHandler(void)
-	{
-		TIM2_IRQHandler_cpp();
-		HAL_TIM_IRQHandler(&(Tim::htim2));
-	}
-}
-
-extern "C" {
-	void NMI_Handler()                    {while (1) ;}	;
-	void HardFault_Handler()              {while (1) ;}	;
-	void MemManage_Handler()              {while (1) ;}	;
-	void BusFault_Handler()              {while (1) ;}	;
-	void UsageFault_Handler()             {while (1) ;}	;
-}
 
 #define NUM_VOICES 1
 
@@ -109,15 +102,20 @@ static void thread1(void *argument)
 	//All voices will be initialised off
 	//Voice voice_array[NUM_VOICES];
 	//TODO: velocity is a byte?
-	//voice_array[0].turn_on(global_parameters, 1000, 1);
+	voice_array[0].turn_on(global_parameters, 1000, 1);
 	Sample sample;
 
 	while (1) {
+		uint8_t queue_message;
+		const BaseType_t xQueueReceiveReturn = xQueueReceive(queue_handle, &queue_message, 0);
+		if (xQueueReceiveReturn == pdTRUE) {
+			voice_array[0].turn_on(global_parameters, 1000, 1);
+		}	
 		if(sample.state == invalid) {
 			//we need to calculate a new sample
 			//uint32_t voice_index {0};
 			float total {0};
-			voice_array[0].turn_on(global_parameters, 1000, 1);
+			//voice_array[0].turn_on(global_parameters, 1000, 1);
 			*Dac_2::dac2_fast_ptr = 0xFFF;
 			for (Voice& voice : voice_array) {
 				total += voice.get_next_sample(sample_number);
@@ -138,11 +136,6 @@ static void thread1(void *argument)
 		else 
 			//Should never happen
 			while(1);
-		uint8_t queue_message;
-		const BaseType_t xQueueReceiveReturn = xQueueReceive(queue_handle, &queue_message, 0);
-		if (xQueueReceiveReturn == pdTRUE) {
-			voice_array[0].turn_on(global_parameters, 1000, 1);
-		}	
 	}
 }
 
@@ -202,6 +195,58 @@ void SystemClock_Config(void)
 	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
 	{
 		while (1) ;
+	}
+}
+
+void *malloc(size_t size)
+{
+	//no dynamic memory allocation
+	while(1);
+	return NULL;
+}
+
+extern "C" {
+	void SysTick_Handler(void)
+	{
+		HAL_IncTick();
+		osSystickHandler();
+	}
+}
+
+void TIM2_IRQHandler_cpp(void) {
+	const float sample = Sample_buffer::get_next_sample().value;
+	//TODO: Check optional
+	Dac_1::set_value_rel((float) sample);
+}
+
+extern "C" {
+	void TIM2_IRQHandler(void)
+	{
+		TIM2_IRQHandler_cpp();
+		HAL_TIM_IRQHandler(&(Tim::htim2));
+	}
+}
+
+extern "C" {
+	void NMI_Handler()			{while (1);};
+	void HardFault_Handler()    {while (1);};
+	void MemManage_Handler()    {while (1);};
+	void BusFault_Handler()     {while (1);};
+	void UsageFault_Handler()   {while (1);};
+}
+
+extern "C" {
+	
+	void vApplicationMallocFailedHook(void)
+	{
+		__set_PRIMASK(1);
+		for (;;) ;
+	}
+
+	void vApplicationStackOverflowHook(TaskHandle_t xTask, signed char *pcTaskName)
+	{
+		__set_PRIMASK(1);
+		for (;;) ;
 	}
 }
 

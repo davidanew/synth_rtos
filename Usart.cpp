@@ -5,6 +5,7 @@ void Usart::transmit_byte(const UART_HandleTypeDef& huart, uint8_t byte) {
 }
 
 UART_HandleTypeDef Usart_2::huart2 = { };
+uint8_t data;
 
 //Init code from CubeMX
 void Usart_2::init(void)
@@ -28,15 +29,30 @@ void Usart_2::init(void)
 	huart2.Init.Mode = UART_MODE_TX_RX;
 	huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
 	huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+	HAL_NVIC_SetPriority(USART2_IRQn, 0, 0);
+	HAL_NVIC_EnableIRQ(USART2_IRQn);
+
 	if (HAL_UART_Init(&huart2) != HAL_OK)
 	{
 		//Error_Handler();
 		while(1);
 	}
+	
+	//TODO: Use better function
+	HAL_UART_Receive_IT(&huart2, &data, 1);
+
 }
 
 void Usart_2::transmit_byte(uint8_t byte) {
 	Usart::transmit_byte(huart2, byte);
 }
 
+
+uint8_t Usart_2::receive_byte() {
+	//uint8_t buffer;
+	//HAL_UART_Receive(&huart2, &buffer, 1, HAL_MAX_DELAY);
+	//return buffer;
+	return (uint8_t) USART2->DR;
+	
+}
 
