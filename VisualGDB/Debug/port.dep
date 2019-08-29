@@ -8,8 +8,7 @@ VisualGDB/Debug/port.o: \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\features.h \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\_newlib_version.h \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\_intsup.h \
- c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\_stdint.h \
- C:/Users/david/source/repos/synth_rtos/synth_rtos/FreeRTOSConfig.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\_stdint.h FreeRTOSConfig.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/projdefs.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/portable.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/deprecated_definitions.h \
@@ -36,7 +35,7 @@ c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\_intsup.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\_stdint.h:
 
-C:/Users/david/source/repos/synth_rtos/synth_rtos/FreeRTOSConfig.h:
+FreeRTOSConfig.h:
 
 C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/projdefs.h:
 

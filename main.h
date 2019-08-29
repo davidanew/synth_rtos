@@ -16,6 +16,8 @@
 #include "Global_parameters.h"
 #include "array"
 #include "algorithm"
+#include "Exceptions.h"
+#include "Shared.h"
 
 
 

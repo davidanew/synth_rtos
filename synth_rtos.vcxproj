@@ -42,9 +42,11 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
       <CPPLanguageStandard>CPP11</CPPLanguageStandard>
-      <AdditionalIncludeDirectories>;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG=1;DEBUG_DEFAULT_INTERRUPT_HANDLERS;;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG=1;DEBUG_DEFAULT_INTERRUPT_HANDLERS;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <Optimization>O0</Optimization>
+      <AdditionalOptions />
+      <CLanguageStandard />
     </ClCompile>
     <ToolchainSettingsContainer>
       <FloatABI>
@@ -55,10 +57,11 @@
       </ARMFPU>
     </ToolchainSettingsContainer>
     <Link>
-      <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
-      <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
-      <AdditionalLibraryNames>;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <AdditionalLinkerInputs>%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <LibrarySearchDirectories>%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
       <LinkerScript />
+      <AdditionalOptions />
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
@@ -73,16 +76,19 @@
   </ImportGroup>
   <ItemGroup>
     <ClCompile Include="Dac.cpp" />
+    <ClCompile Include="Exceptions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Sample_buffer.cpp" />
+    <ClCompile Include="Shared.cpp" />
     <ClCompile Include="system_stm32f4xx.c" />
     <ClCompile Include="Tests.cpp" />
     <ClCompile Include="Tim.cpp" />
     <ClCompile Include="Usart.cpp" />
     <ClCompile Include="Voice.cpp" />
     <ClCompile Include="Waves.cpp" />
+    <ClInclude Include="Exceptions.h" />
     <ClInclude Include="Global_parameters.h" />
-    <ClInclude Include="shared_structs.h" />
+    <ClInclude Include="Shared.h" />
     <ClInclude Include="Tests.h" />
     <ClInclude Include="Voice.h" />
     <ClInclude Include="Waves.h" />

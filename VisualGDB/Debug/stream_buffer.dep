@@ -22,7 +22,7 @@ VisualGDB/Debug/stream_buffer.o: \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\_locale.h \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\string.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/FreeRTOS.h \
- C:/Users/david/source/repos/synth_rtos/synth_rtos/FreeRTOSConfig.h \
+ FreeRTOSConfig.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/projdefs.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/portable.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/deprecated_definitions.h \
@@ -76,7 +76,7 @@ c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\string.h:
 
 C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/FreeRTOS.h:
 
-C:/Users/david/source/repos/synth_rtos/synth_rtos/FreeRTOSConfig.h:
+FreeRTOSConfig.h:
 
 C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/projdefs.h:
 

@@ -807,6 +807,12 @@
     <ClInclude Include="$(BSP_ROOT)\FreeRTOS\Source\portable\GCC\ARM_CM4F\portmacro.h">
       <Filter>Header files\Device-specific files\FreeRTOS</Filter>
     </ClInclude>
+    <ClCompile Include="Exceptions.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shared.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dac.h">
@@ -836,7 +842,10 @@
     <ClInclude Include="Tim.h">
       <Filter>Source files</Filter>
     </ClInclude>
-    <ClInclude Include="shared_structs.h">
+    <ClInclude Include="Exceptions.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared.h">
       <Filter>Source files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,6 +1,6 @@
 VisualGDB/Debug/main.o: main.cpp main.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F4xxxx/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
- C:/Users/david/source/repos/synth_rtos/synth_rtos/stm32f4xx_hal_conf.h \
+ stm32f4xx_hal_conf.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F4xxxx/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F4xxxx/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F4xxxx/CMSIS_HAL/Device/ST/STM32F4xx/Include/stm32f4xx.h \
@@ -87,7 +87,7 @@ VisualGDB/Debug/main.o: main.cpp main.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F4xxxx/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_mmc.h \
  c:\users\david\appdata\local\visualgdb\embeddedbsps\arm-eabi\com.sysprogs.arm.stm32\freertos\source\cmsis_rtos\cmsis_os.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/FreeRTOS.h \
- C:/Users/david/source/repos/synth_rtos/synth_rtos/FreeRTOSConfig.h \
+ FreeRTOSConfig.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/projdefs.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/portable.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/deprecated_definitions.h \
@@ -102,7 +102,7 @@ VisualGDB/Debug/main.o: main.cpp main.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/queue.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/event_groups.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/timers.h \
- Dac.h Usart.h shared_structs.h \
+ Dac.h Usart.h Shared.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\functional \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\c++config.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\os_defines.h \
@@ -211,13 +211,13 @@ VisualGDB/Debug/main.o: main.cpp main.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_tempbuf.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_construct.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\uniform_int_dist.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\limits
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\limits Exceptions.h
 
 main.h:
 
 C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F4xxxx/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
-C:/Users/david/source/repos/synth_rtos/synth_rtos/stm32f4xx_hal_conf.h:
+stm32f4xx_hal_conf.h:
 
 C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F4xxxx/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
 
@@ -391,7 +391,7 @@ c:\users\david\appdata\local\visualgdb\embeddedbsps\arm-eabi\com.sysprogs.arm.st
 
 C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/FreeRTOS.h:
 
-C:/Users/david/source/repos/synth_rtos/synth_rtos/FreeRTOSConfig.h:
+FreeRTOSConfig.h:
 
 C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/projdefs.h:
 
@@ -425,7 +425,7 @@ Dac.h:
 
 Usart.h:
 
-shared_structs.h:
+Shared.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\functional:
 
@@ -652,3 +652,5 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_construct.h:
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\uniform_int_dist.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\limits:
+
+Exceptions.h:

@@ -1,6 +1,10 @@
 #pragma once
 #include <stm32f4xx_hal.h>
+#include <../CMSIS_RTOS/cmsis_os.h>
 
+
+extern QueueHandle_t queue_handle;
+extern QueueHandle_t uart_byte_queue_handle;
 
 //Holds data for MIDI 'Note On' message
 struct Note_on_struct {
