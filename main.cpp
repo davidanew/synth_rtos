@@ -1,23 +1,14 @@
 #include "main.h"
 
-//#include "Global_parameters.h"
-
-
 static void thread1(void *);
 static void thread2(void *);
 void SystemClock_Config(void);
 
-
-//Global_parameters global_parameters;
-
 QueueHandle_t queue_handle {nullptr};
 QueueHandle_t uart_byte_queue_handle {nullptr};
 
-
-
 int main(void)
 {
-	//taskENTER_CRITICAL();
 	HAL_Init(); 
 	SystemClock_Config();
 	Dac_1::init();
@@ -26,13 +17,10 @@ int main(void)
 	Usart_2::init();
 	Tim::init();
 	Waves::init();
-	
-	//Usart_2::transmit_byte('x');
-	
 	BaseType_t taskCreateReturn;
+	Usart_2::transmit_byte('x');
 	queue_handle = xQueueCreate(10,sizeof(uint8_t));
 	uart_byte_queue_handle = xQueueCreate(10, sizeof(uint8_t));
-
 	taskCreateReturn = xTaskCreate(thread1, "Add Voice and Calculate Sample", 2048, NULL, 1, NULL);	
 	if (taskCreateReturn != pdPASS)
 		//error
@@ -58,21 +46,15 @@ struct Sample {
 	Sample_value_state state {invalid};	
 };
 
-//TODO: no capital for Wave_type?
-
+//TODO: Capital for Wave_type?
 static void thread1(void *argument)
 {
 	(void) argument;
 	uint64_t sample_number {0}	;
-	//BaseType_t xQueueReceiveReturn;
+	//All voices will be initialised off
 	std::array<Voice, NUM_VOICES> voice_array;
 	Global_parameters global_parameters;
-	//All voices will be initialised off
-	//Voice voice_array[NUM_VOICES];
-	//TODO: velocity is a byte?
-	//voice_array[0].turn_on(global_parameters, 1000, 1);
 	Sample sample;
-
 	while (1) {
 		uint8_t queue_message;
 		const BaseType_t xQueueReceiveReturn = xQueueReceive(queue_handle, &queue_message, 0);
@@ -81,9 +63,7 @@ static void thread1(void *argument)
 		}	
 		if(sample.state == invalid) {
 			//we need to calculate a new sample
-			//uint32_t voice_index {0};
 			float total {0};
-			//voice_array[0].turn_on(global_parameters, 1000, 1);
 			*Dac_2::dac2_fast_ptr = 0xFFF;
 			for (Voice& voice : voice_array) {
 				total += voice.get_next_sample(sample_number);
@@ -96,7 +76,6 @@ static void thread1(void *argument)
 		//This function should always be run as the sample should have been calculated by calculation above or in previous loop
 		if (sample.state == calculated) {
 			//attempt to write to buffer
-			//bool buffer_add_success {false};
 			const bool buffer_add_success = Sample_buffer::add_sample(sample.value * (float) 0.5 + (float) 0.5) ; 	
 			if (buffer_add_success)
 				sample.state = invalid;
@@ -125,20 +104,6 @@ static void thread2(void *argument)
 	while (1) {
 		message = 0;
 		const BaseType_t xQueueReceiveReturn = xQueueReceive(uart_byte_queue_handle, &message, portMAX_DELAY);
-		
-		//std::function<void(Note_on_struct)> func1 = [](Note_on_struct note_on_struct) {
-			////handle_note_on(note_on_struct, voice_map, global_parameters);
-			//xQueueSendToFront(queue_handle, &message, portMAX_DELAY);
-		//};
-		//
-		//std::function<void(Controller_change_struct)> func2 = [](Controller_change_struct controller_change_struct) {
-			////handle_note_on(note_on_struct, voice_map, global_parameters);
-			//
-			//xQueueSendToFront(queue_handle, &message, portMAX_DELAY);
-		//};
-		
-		
-		
 		if (message != 0) {
 			Midi_in::handle_midi_byte(message, handle_note_on, handle_controller_change);
 		}

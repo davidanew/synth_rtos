@@ -5,13 +5,10 @@
 
 void Tests::output_sine(void) {
 	
-	
-	
 	uint32_t test_sample_number {0};
 	float test_sample {0};
 	float test_sample_rel {0};
 	bool buffer_add_success {false}	;
-	
 	
 	while (1) {
 		test_sample = Waves::get_sample_with_sample_number_sine(test_sample_number);

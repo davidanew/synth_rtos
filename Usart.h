@@ -18,6 +18,7 @@ public:
 	static void transmit_byte(uint8_t);	
 	static uint32_t read_dr();
 	static bool is_flag_set(const uint32_t flag);
+	static void receive(uint8_t* buffer_ptr, uint16_t size); 
 };
 
 

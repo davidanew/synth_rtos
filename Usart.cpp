@@ -21,7 +21,7 @@ void Usart_1::init(void)
 	GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
 	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 	huart1.Instance = USART1;
-	huart1.Init.BaudRate = 115200;
+	huart1.Init.BaudRate = 31250;
 	huart1.Init.WordLength = UART_WORDLENGTH_8B;
 	huart1.Init.StopBits = UART_STOPBITS_1;
 	huart1.Init.Parity = UART_PARITY_NONE;
@@ -37,7 +37,6 @@ void Usart_1::init(void)
 		//Error_Handler();
 		while(1);
 	}
-
 }
 
 void Usart_1::transmit_byte(uint8_t byte) {
@@ -46,7 +45,10 @@ void Usart_1::transmit_byte(uint8_t byte) {
 
 uint32_t Usart_1::read_dr() {
 	return (uint32_t) USART1->DR;
-	
+}
+
+void Usart_1::receive(uint8_t* buffer_ptr, uint16_t size) {
+	HAL_UART_Receive(&huart1, buffer_ptr, size, HAL_MAX_DELAY);
 }
 
 bool Usart_1::is_flag_set(const uint32_t flag) {
@@ -54,7 +56,6 @@ bool Usart_1::is_flag_set(const uint32_t flag) {
 }
 
 UART_HandleTypeDef Usart_2::huart2 = { };
-//uint8_t data;
 
 //Init code from CubeMX
 void Usart_2::init(void)

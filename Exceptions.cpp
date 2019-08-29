@@ -2,10 +2,16 @@
 
 extern "C" {
 	
+//	90 44 7f 90 44 00    ê
+	
 	void USART1_IRQHandler(void)
 	{
 		BaseType_t higherPriorityTaskWoken {pdFALSE};
 		if (Usart_1::is_flag_set(UART_FLAG_RXNE)) {
+			//uint8_t temp {0}			;
+			//uint8_t* temp_ptr = &temp;
+			//Usart_1::receive(temp_ptr, (uint16_t) 1);
+
 			const uint8_t byte = Usart_1::read_dr();
 			//for logging
 			Usart_2::transmit_byte(byte);
@@ -28,8 +34,6 @@ extern "C" {
 			taskYIELD();
 		}
 	}
-	
-	
 	
 	
 	void USART2_IRQHandler(void)
@@ -60,8 +64,6 @@ extern "C" {
 		}
 	}
 }
-
-
 
 void *malloc(size_t size)
 {
