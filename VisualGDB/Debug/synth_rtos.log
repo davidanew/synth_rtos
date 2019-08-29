@@ -85,7 +85,7 @@
        	  OutputMemoryUtilization
            ") at C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.Cpp.DesignTime.targets (477,5)
        Property reassignment: $(MSBuildAllProjects)="C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj;;C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.targets;C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj.user" (previous value: ";C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.targets;C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj.user") at 
-Build started 28/08/2019 16:25:53.
+Build started 29/08/2019 09:57:22.
      1>Project "C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj" on node 2 (Build target(s)).
      1>Building with tools version "Current".
      1>Target "CheckSettings" in file "C:\Program Files (x86)\Sysprogs\VisualGDB\MSBuild\SysprogsPlatform.targets" from project "C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj" (entry point):
@@ -159,10 +159,10 @@ Build started 28/08/2019 16:25:53.
        Target "BeginRemoteBuild" skipped, due to false condition; (('$(IsRemoteBuild)' == 'true') and ('$(DesignTimeBuild)' != 'true')) was evaluated as (('false' == 'true') and ('false' != 'true')).
      1>Target "SetTelemetryEnvironmentVariables" in file "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.Cpp.DesignTime.targets" from project "C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj" (target "Build" depends on it):
        Task "SetEnv"
-         VSTEL_SolutionSessionID={2B311CC7-A96E-46BB-81AF-255170AF8DF6}
+         VSTEL_SolutionSessionID={02859BEB-F605-4CC6-BBC9-6216CF09FCA0}
        Done executing task "SetEnv".
        Task "SetEnv"
-         VSTEL_CurrentSolutionBuildID=278376203
+         VSTEL_CurrentSolutionBuildID=341466015
        Done executing task "SetEnv".
        Task "SetEnv"
          VSTEL_ProjectID={47B14AEB-E137-426F-B89D-670D660D95C0}
@@ -238,7 +238,7 @@ Build started 28/08/2019 16:25:53.
        Using "OutputMemoryUtilization" task from assembly "C:\Program Files (x86)\Sysprogs\VisualGDB\\Sysprogs.Build.Tasks.dll".
        Task "OutputMemoryUtilization"
          ------------------- Memory utilization report -------------------
-         Used FLASH: 26KB out of 512KB (5%) [+576]
+         Used FLASH: 26KB out of 512KB (5%) [+256]
          Used SRAM: 32KB out of 128KB (25%)
        Done executing task "OutputMemoryUtilization".
      1>Done building target "OutputMemoryUtilization" in project "synth_rtos.vcxproj".
@@ -256,4 +256,4 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:03.84
+Time Elapsed 00:00:01.58
