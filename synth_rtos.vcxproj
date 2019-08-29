@@ -82,6 +82,7 @@
     <ClCompile Include="Voice.cpp" />
     <ClCompile Include="Waves.cpp" />
     <ClInclude Include="Global_parameters.h" />
+    <ClInclude Include="shared_structs.h" />
     <ClInclude Include="Tests.h" />
     <ClInclude Include="Voice.h" />
     <ClInclude Include="Waves.h" />

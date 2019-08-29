@@ -102,4 +102,88 @@ bool Usart_2::is_flag_set(const uint32_t flag) {
 	return __HAL_UART_GET_FLAG(&Usart_2::huart2, flag);
 }
 
+//First step in midi read is to get the status byte
+Midi_state Midi_in::state = { wait_status_byte };
+
+Note_on_struct Midi_in::note_on_struct = { };
+Controller_change_struct Midi_in::controller_change_struct = { };
+
+//See https://www.songstuff.com/recording/article/midi_message_format/
+
+//Waits for one byte from uart input (though this should only be called when data is ready
+//handing done by sub procedure
+//void Midi_in::receive_byte_and_handle(std::function<void(Note_on_struct)> note_on_handler, std::function<void(Controller_change_struct)> controller_change_handler) {
+	//uint8_t buffer_arr[1] {0}	;
+	//receive(buffer_arr, 1);
+	//handle_midi_byte(buffer_arr[0], note_on_handler, controller_change_handler);
+//}
+
+//Handle the recieved midi byte. FSM state is updated and appropriate midi data holding structs
+//When the full message is recieved (3 bytes) then one of the supplied funtions is run
+//void Midi_in::handle_midi_byte(uint8_t midi_byte, std::function<void(Note_on_struct)> note_on_handler, std::function<void(Controller_change_struct)> controller_change_handler) {
+void Midi_in::handle_midi_byte(uint8_t midi_byte, void(*note_on_handler)(Note_on_struct), void(*controller_change_handler)(Controller_change_struct)) {
+	switch (state) {
+	case (wait_status_byte): 
+		if (is_status_byte(midi_byte))
+			//Setting next state
+			state = get_next_state_from_status_byte(midi_byte);
+		else 
+			//do nothing
+			state = wait_status_byte;
+		break;
+	case (wait_note_number):
+		//We can handle a new status message from any state 
+		if(is_status_byte(midi_byte))
+			state = get_next_state_from_status_byte(midi_byte);
+		else 
+			//If it isn't a stutus byte assume it is valid dats
+			note_on_struct.note_number = midi_byte;
+		state = wait_velocity;
+		break;
+	case (wait_controller_number):
+		if (is_status_byte(midi_byte))
+			state = get_next_state_from_status_byte(midi_byte);
+		else 
+			controller_change_struct.controller_number = midi_byte;
+		state = wait_controller_data;
+		break;
+	case (wait_velocity):
+		if (is_status_byte(midi_byte))
+			state = get_next_state_from_status_byte(midi_byte);
+		else {
+			//The final part of the message for Note On
+			note_on_struct.velocity = midi_byte;
+			note_on_handler(note_on_struct);
+			state = wait_status_byte;			
+		}
+		break;
+	case (wait_controller_data):
+		if (is_status_byte(midi_byte))
+			state = get_next_state_from_status_byte(midi_byte);
+		else {
+			//The final part of the message for Controller Change
+			controller_change_struct.controller_data = midi_byte;
+			controller_change_handler(controller_change_struct);
+			state = wait_status_byte;
+		}
+		break;
+	default:
+		state = wait_status_byte;
+		break;
+	}		
+}
+
+Midi_state Midi_in::get_next_state_from_status_byte(uint8_t midi_byte) {
+	if (is_status_byte(midi_byte)) {
+		if ((midi_byte & 0xF0)  == 0x90) return wait_note_number; //it was note on
+		else if((midi_byte & 0xB0) == 0xB0) return wait_controller_number;  //it was a controller change
+		else return wait_status_byte;  //unsupported status byte
+	}
+	else return wait_status_byte;
+}
+
+bool Midi_in::is_status_byte(uint8_t midi_byte) {
+	return ((midi_byte & 1 << 7) == (1 << 7));
+}
+
 

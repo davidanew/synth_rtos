@@ -836,5 +836,8 @@
     <ClInclude Include="Tim.h">
       <Filter>Source files</Filter>
     </ClInclude>
+    <ClInclude Include="shared_structs.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

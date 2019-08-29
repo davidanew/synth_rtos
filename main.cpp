@@ -1,4 +1,6 @@
 #include "main.h"
+#include "Usart.h"
+//#include "Global_parameters.h"
 
 
 static void thread1(void *);
@@ -6,6 +8,8 @@ static void thread2(void *);
 void SystemClock_Config(void);
 QueueHandle_t queue_handle {nullptr};
 QueueHandle_t uart_byte_queue_handle {nullptr};
+
+//Global_parameters global_parameters;
 
 
 
@@ -19,6 +23,7 @@ extern "C" {
 		;
 		if (Usart_1::is_flag_set(UART_FLAG_RXNE)) {
 			const uint8_t byte = Usart_1::read_dr();
+			//for logging
 			Usart_2::transmit_byte(byte);
 			uint8_t message {0}			;
 			if (uart_byte_queue_handle != nullptr) {
@@ -27,6 +32,10 @@ extern "C" {
 					//error
 					while(1);
 			}
+		}
+		else if (Usart_1::is_flag_set(UART_FLAG_ORE)) {
+			Usart_1::read_dr();
+			//while (1) ;
 		}
 		else {
 			while (1) ;
@@ -42,10 +51,10 @@ extern "C" {
 	void USART2_IRQHandler(void)
 	{
 		BaseType_t higherPriorityTaskWoken {pdFALSE};
-		if(Usart_2::is_flag_set(UART_FLAG_RXNE)) {
+		if (Usart_2::is_flag_set(UART_FLAG_RXNE)) {
 			const uint8_t byte = Usart_2::read_dr();
 			Usart_2::transmit_byte(byte);
-			uint8_t message {0};
+			uint8_t message {0}			;
 			if (uart_byte_queue_handle != nullptr) {
 				const BaseType_t queueSendReturn = xQueueSendToFrontFromISR(uart_byte_queue_handle, &byte, &higherPriorityTaskWoken);	
 				if (queueSendReturn != pdPASS)
@@ -53,6 +62,10 @@ extern "C" {
 					while(1);
 			}
 
+		}
+		else if (Usart_2::is_flag_set(UART_FLAG_ORE)) {
+			Usart_2::read_dr();
+			//while (1) ;
 		}
 		else {
 			while (1) ;
@@ -155,6 +168,17 @@ static void thread1(void *argument)
 	}
 }
 
+
+void handle_note_on(Note_on_struct note_on_struct) {
+	uint8_t message {'x'};
+	xQueueSendToFront(queue_handle, &message, portMAX_DELAY);
+} 
+
+void handle_controller_change(Controller_change_struct controller_change_struct) {
+	uint8_t message {'x'}	;
+	xQueueSendToFront(queue_handle, &message, portMAX_DELAY);
+} 
+
 static void thread2(void *argument)
 {
 	(void) argument;
@@ -162,8 +186,22 @@ static void thread2(void *argument)
 	while (1) {
 		message = 0;
 		const BaseType_t xQueueReceiveReturn = xQueueReceive(uart_byte_queue_handle, &message, portMAX_DELAY);
+		
+		//std::function<void(Note_on_struct)> func1 = [](Note_on_struct note_on_struct) {
+			////handle_note_on(note_on_struct, voice_map, global_parameters);
+			//xQueueSendToFront(queue_handle, &message, portMAX_DELAY);
+		//};
+		//
+		//std::function<void(Controller_change_struct)> func2 = [](Controller_change_struct controller_change_struct) {
+			////handle_note_on(note_on_struct, voice_map, global_parameters);
+			//
+			//xQueueSendToFront(queue_handle, &message, portMAX_DELAY);
+		//};
+		
+		
+		
 		if (message != 0) {
-			xQueueSendToFront(queue_handle, &message, portMAX_DELAY);
+			Midi_in::handle_midi_byte(message, handle_note_on, handle_controller_change);
 		}
 	}
 }

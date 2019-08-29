@@ -102,19 +102,14 @@ VisualGDB/Debug/main.o: main.cpp main.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/queue.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/event_groups.h \
  C:/Users/david/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/FreeRTOS/Source/Include/timers.h \
- Dac.h Usart.h Tim.h Sample_buffer.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\array \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\utility \
+ Dac.h Usart.h shared_structs.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\functional \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\c++config.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\os_defines.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\cpu_defines.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_relops.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_pair.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\move.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\concept_check.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\type_traits \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\initializer_list \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\stdexcept \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_function.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\backward\binders.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\new \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\exception \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\exception.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\exception_ptr.h \
@@ -122,8 +117,17 @@ VisualGDB/Debug/main.o: main.cpp main.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\cxxabi_init_exception.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\typeinfo \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\hash_bytes.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\new \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\nested_exception.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\move.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\concept_check.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\type_traits \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tuple \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\utility \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_relops.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_pair.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\initializer_list \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\array \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\stdexcept \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\string \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stringfwd.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\memoryfwd.h \
@@ -167,8 +171,6 @@ VisualGDB/Debug/main.o: main.cpp main.h \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\ctype.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\ostream_insert.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\cxxabi_forced.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_function.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\backward\binders.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\range_access.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\basic_string.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\ext\atomicity.h \
@@ -193,7 +195,12 @@ VisualGDB/Debug/main.o: main.cpp main.h \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\errno.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\functional_hash.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\basic_string.tcc \
- Waves.h c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\math.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\uses_allocator.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\invoke.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\std_function.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\refwrap.h Tim.h \
+ Sample_buffer.h Waves.h \
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\math.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\cmath \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\math.h Tests.h Voice.h \
  Global_parameters.h \
@@ -418,13 +425,9 @@ Dac.h:
 
 Usart.h:
 
-Tim.h:
+shared_structs.h:
 
-Sample_buffer.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\array:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\utility:
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\functional:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\c++config.h:
 
@@ -432,19 +435,11 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\fpu\cortex_m4\bits\cpu_defines.h:
 
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_relops.h:
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_function.h:
 
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_pair.h:
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\backward\binders.h:
 
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\move.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\concept_check.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\type_traits:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\initializer_list:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\stdexcept:
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\new:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\exception:
 
@@ -460,9 +455,27 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\typeinfo:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\hash_bytes.h:
 
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\new:
-
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\nested_exception.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\move.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\concept_check.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\type_traits:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\tuple:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\utility:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_relops.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_pair.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\initializer_list:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\array:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\stdexcept:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\string:
 
@@ -550,10 +563,6 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\ostream_insert.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\cxxabi_forced.h:
 
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\stl_function.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\backward\binders.h:
-
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\range_access.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\basic_string.h:
@@ -601,6 +610,18 @@ c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\errno.h:
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\functional_hash.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\basic_string.tcc:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\uses_allocator.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\invoke.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\std_function.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\bits\refwrap.h:
+
+Tim.h:
+
+Sample_buffer.h:
 
 Waves.h:
 
