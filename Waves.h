@@ -3,6 +3,8 @@
 #include <stm32f4xx_hal.h>
 #include <math.h>
 
+//Chose 4096 samples as thsi is the same as the reolution of the DAC
+//No point going much above this
 #define NUM_SAMPLES_PER_WAVE 4096
 
 class Waves {

@@ -16,8 +16,8 @@ protected:
 class Dac_1 : public Dac {
 	static DAC_HandleTypeDef hdac ;
 public:
+	//This pointer is made public so the valiue can be set without a subroutine call
 	static const uint32_t dac1_fast_ptr = DAC_BASE + 0x8;
-
 	static void init() {Dac::init(hdac , DAC_CHANNEL_1);}
 	static void set_value(uint32_t dac_value) { Dac::set_value(hdac, DAC_CHANNEL_1, dac_value);};
 	static void set_value_rel(float dac_value)  {Dac::set_value_rel(hdac, DAC_CHANNEL_1, dac_value);};
@@ -25,6 +25,7 @@ public:
 
 };
 
+//Similar to Dac_1
 class Dac_2 : public Dac {
 	static DAC_HandleTypeDef hdac;
 public:

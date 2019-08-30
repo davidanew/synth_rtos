@@ -1,7 +1,9 @@
 #include "Tim.h"
 
+//This timer is used to trigger sample output
 //Currently uses TIM2
 //Hard coded values for 40kHz
+//Based on CubeMX code
 void Tim::init(void)
 {
 	htim2.Instance = TIM2;
@@ -31,7 +33,8 @@ void Tim::HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
 	}
 }
 
-//Return sample tick time in us
+//Return sample tick time in us (hardcoded)
+//TODO: remane get_*
 uint64_t Tim::sample_tick_us() {
 	return 25;
 }
