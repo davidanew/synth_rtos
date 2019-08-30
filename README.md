@@ -12,6 +12,4 @@ Audio sythesiser for STM32 microcontroller
 
 Entry point:
 
-https://github.com/davidanew/synth1_rtos/blob/master/main.cpp
-
-
+https://github.com/davidanew/synth_rtos/blob/master/main.cpp
