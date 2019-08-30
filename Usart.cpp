@@ -109,19 +109,8 @@ Midi_state Midi_in::state = { wait_status_byte };
 Note_on_struct Midi_in::note_on_struct = { };
 Controller_change_struct Midi_in::controller_change_struct = { };
 
-//See https://www.songstuff.com/recording/article/midi_message_format/
-
-//Waits for one byte from uart input (though this should only be called when data is ready
-//handing done by sub procedure
-//void Midi_in::receive_byte_and_handle(std::function<void(Note_on_struct)> note_on_handler, std::function<void(Controller_change_struct)> controller_change_handler) {
-	//uint8_t buffer_arr[1] {0}	;
-	//receive(buffer_arr, 1);
-	//handle_midi_byte(buffer_arr[0], note_on_handler, controller_change_handler);
-//}
-
 //Handle the recieved midi byte. FSM state is updated and appropriate midi data holding structs
 //When the full message is recieved (3 bytes) then one of the supplied funtions is run
-//void Midi_in::handle_midi_byte(uint8_t midi_byte, std::function<void(Note_on_struct)> note_on_handler, std::function<void(Controller_change_struct)> controller_change_handler) {
 void Midi_in::handle_midi_byte(uint8_t midi_byte, void(*note_on_handler)(Note_on_struct), void(*controller_change_handler)(Controller_change_struct)) {
 	switch (state) {
 	case (wait_status_byte): 

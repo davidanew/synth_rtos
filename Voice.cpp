@@ -1,7 +1,5 @@
 #include "Voice.h"
 
-//Construct new voice
-//This will be placed in the voice map in main
 void Voice::turn_on(const Global_parameters& global_parameters, const uint32_t& freq, const float &velocity) {
 	this->global_parameters = global_parameters;
 	freq_1 = freq_2 = freq;
@@ -42,10 +40,8 @@ float Voice::get_next_sample(const uint64_t sample_number) {
 	//The function should not be called until the next sample, but it doesn't matter if
 	//it is called earlier
 	//Calculate the sample from the two waveforms and return value
-	
 	float wave_1_value {0};
 	float wave_2_value {0};
-	
 	switch (global_parameters.wave_1_type) {
 	case sine_wave :
 		wave_1_value = Waves::get_sample_with_phase_rel_sine(phase_rel_1);
@@ -62,7 +58,8 @@ float Voice::get_next_sample(const uint64_t sample_number) {
 		wave_2_value = Waves::get_sample_with_phase_rel_sine(phase_rel_1);
 		break;
 	}
-	//TODO: if amplitude is zero and end of adsr envelope then turn off
+	//TODO: if amplitude is zero and end of adsr envelope then turn off?
+	//does on or off even matter?
 
 	return (float)(wave_1_value * global_parameters.ampl_1 + 
 					wave_2_value * global_parameters.ampl_2)

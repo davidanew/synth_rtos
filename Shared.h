@@ -2,7 +2,7 @@
 #include <stm32f4xx_hal.h>
 #include <../CMSIS_RTOS/cmsis_os.h>
 
-
+//These queue handles need to be shared between main and exceptions files
 extern QueueHandle_t queue_handle;
 extern QueueHandle_t uart_byte_queue_handle;
 
@@ -10,9 +10,9 @@ extern QueueHandle_t uart_byte_queue_handle;
 struct Note_on_struct {
 	uint8_t note_number {0}	;
 	uint8_t velocity {0}	;
+	//TODO: Is this needed? 
 	uint32_t get_frequecy()
 	{
-		//TODO: gte this to work
 		return note_number;
 	}
 }

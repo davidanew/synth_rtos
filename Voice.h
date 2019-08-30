@@ -2,13 +2,13 @@
 #include <stm32f4xx_hal.h>
 #include "Global_parameters.h"
 #include "Waves.h"
-//#include <optional>
 
+//This class holds hold one one voice, which has two waveform generators
 
 enum Voice_state{ on , off };
 
 class Voice {
-	
+	//Patremeters that are shared between voices
 	Global_parameters global_parameters;
 	wave_type wave_1 {sine_wave};
 	wave_type wave_2 {sine_wave};
@@ -30,15 +30,7 @@ class Voice {
 	float phase_rel_per_sample_1 {0};
 	float phase_rel_per_sample_2 {0};
 public:		
-	//Never contructed with this one?
-	//what about global parameters?
-	//Voice(const Global_parameters& global_parameters, const uint32_t& freq, const float &velocity);
+	//Default constructor is used. Voice is initialised off so will output 0
 	void turn_on(const Global_parameters& global_parameters, const uint32_t& freq, const float &velocity);
 	float get_next_sample(const uint64_t sample_number);
-	//exprimental
-	//std::optional<uint64_t> start_sample = std::nullopt;
-	//wave_type wave_1_type {sine_wave}	;
-//	wave_type wave_2_type {sine_wave}	;
-//	float velocity_public {0};
-
 };
