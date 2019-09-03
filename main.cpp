@@ -7,7 +7,7 @@ static void thread2(void *);
 void SystemClock_Config(void);
 //TODO: rename this
 //Queue from task 1 to task to. At the moment it is just a trigger (no information)
-QueueHandle_t queue_handle {nullptr};
+QueueHandle_t midi_command_queue_handle {nullptr};
 QueueHandle_t uart_byte_queue_handle {nullptr};
 
 int main(void)
@@ -30,7 +30,7 @@ int main(void)
 	BaseType_t taskCreateReturn;
 	Usart_2::transmit_byte('x');
 	//See queue descriptions above
-	queue_handle = xQueueCreate(10,sizeof(uint8_t));
+	midi_command_queue_handle = xQueueCreate(10, sizeof(Midi_command_queue_message));
 	uart_byte_queue_handle = xQueueCreate(10, sizeof(uint8_t));
 	taskCreateReturn = xTaskCreate(thread1, "Add Voice and Calculate Sample", 2048, NULL, 1, NULL);	
 	if (taskCreateReturn != pdPASS)
@@ -45,7 +45,6 @@ int main(void)
 	for (;;);
 }
 
-
 #define NUM_VOICES 1
 
 //Thread 1 needs to know the state of the sample calculation to allow operations on 2 independet message queues (see below for explanation). 
@@ -58,7 +57,7 @@ struct Sample {
 	Sample_value_state state {invalid};	
 };
 
-//TODO: Capital for Wave_type?
+//Takes midi command messages from thread 2 and outputs waveform
 static void thread1(void *argument)
 {
 	(void) argument;
@@ -70,13 +69,20 @@ static void thread1(void *argument)
 	//Hold sample value and valididty if sample
 	Sample sample;
 	while (1) {
-		uint8_t queue_message;
+		Midi_command_queue_message midi_command_queue_message;
 		//Revieve message from thread 2
 		//TODO: define this
-		const BaseType_t xQueueReceiveReturn = xQueueReceive(queue_handle, &queue_message, 0);
+		const BaseType_t xQueueReceiveReturn = xQueueReceive(midi_command_queue_handle, &midi_command_queue_message, 0);
 		if (xQueueReceiveReturn == pdTRUE) {
-			//At the moment this just turns one voive on
-			voice_array[0].turn_on(global_parameters, 1000, 1);
+			//At the moment this just turns one voice on
+			if(midi_command_queue_message.message_type == note_on) {
+				if (midi_command_queue_message.note_on_struct.velocity_byte > 1) {
+					voice_array[0].turn_on(global_parameters, 1000, 1);
+				}
+				else {
+					voice_array[0].turn_off();
+				}		
+			}
 		}	
 		//Sample may still be valid from last loop, but if not calculate another one
 		if(sample.state == invalid) {
@@ -115,14 +121,19 @@ static void thread1(void *argument)
 //https : //blog.demofox.org/2015/02/25/avoiding-the-performance-hazzards-of-stdfunction/
 //https : //www.quora.com/C++-How-to-pass-a-lambda-function-as-a-parameter-of-another-function
 
+//TODO: Make sure 'front' is the right end of the queue
+
 void handle_note_on(Note_on_struct note_on_struct) {
-	uint8_t message {'x'};
-	xQueueSendToFront(queue_handle, &message, portMAX_DELAY);
+	Midi_command_queue_message message;
+	message.message_type = note_on;
+	message.note_on_struct.velocity_byte = note_on_struct.velocity_byte;
+	xQueueSendToFront(midi_command_queue_handle, &message, portMAX_DELAY);
 } 
 
 void handle_controller_change(Controller_change_struct controller_change_struct) {
-	uint8_t message {'x'}	;
-	xQueueSendToFront(queue_handle, &message, portMAX_DELAY);
+	Midi_command_queue_message message	;
+	message.message_type = control_change;
+	xQueueSendToFront(midi_command_queue_handle, &message, portMAX_DELAY);
 } 
 
 //This thread looks for messages from the UART1 IRQ and handles the data in the Midi_in class
@@ -133,9 +144,12 @@ static void thread2(void *argument)
 	while (1) {
 		message = 0;
 		const BaseType_t xQueueReceiveReturn = xQueueReceive(uart_byte_queue_handle, &message, portMAX_DELAY);
-		if (message != 0) {
+		//if (message != 0) {
+			//Midi_in::handle_midi_byte(message, handle_note_on, handle_controller_change);
+		//}
+		if (xQueueReceiveReturn == pdTRUE) {
 			Midi_in::handle_midi_byte(message, handle_note_on, handle_controller_change);
-		}
+		}	
 	}
 }
 

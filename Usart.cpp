@@ -142,7 +142,7 @@ void Midi_in::handle_midi_byte(uint8_t midi_byte, void(*note_on_handler)(Note_on
 			state = get_next_state_from_status_byte(midi_byte);
 		else {
 			//The final part of the message for Note On
-			note_on_struct.velocity = midi_byte;
+			note_on_struct.velocity_byte = midi_byte;
 			note_on_handler(note_on_struct);
 			state = wait_status_byte;			
 		}
@@ -166,7 +166,7 @@ void Midi_in::handle_midi_byte(uint8_t midi_byte, void(*note_on_handler)(Note_on
 Midi_state Midi_in::get_next_state_from_status_byte(uint8_t midi_byte) {
 	if (is_status_byte(midi_byte)) {
 		if ((midi_byte & 0xF0)  == 0x90) return wait_note_number; //it was note on
-		else if((midi_byte & 0xB0) == 0xB0) return wait_controller_number;  //it was a controller change
+		else if((midi_byte & 0xF0) == 0xB0) return wait_controller_number;  //it was a controller change
 		else return wait_status_byte;  //unsupported status byte
 	}
 	else return wait_status_byte;

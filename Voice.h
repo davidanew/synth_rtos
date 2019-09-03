@@ -10,8 +10,8 @@ enum Voice_state{ on , off };
 class Voice {
 	//Patremeters that are shared between voices
 	Global_parameters global_parameters;
-	wave_type wave_1 {sine_wave};
-	wave_type wave_2 {sine_wave};
+	Wave_type wave_1 {sine_wave};
+	Wave_type wave_2 {sine_wave};
 	//Frequencies for both voices
 	float freq_1 {1000};
 	float freq_2 {1000};
@@ -32,5 +32,7 @@ class Voice {
 public:		
 	//Default constructor is used. Voice is initialised off so will output 0
 	void turn_on(const Global_parameters& global_parameters, const uint32_t& freq, const float &velocity);
+	void turn_off();
+
 	float get_next_sample(const uint64_t sample_number);
 };

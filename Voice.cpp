@@ -10,6 +10,10 @@ void Voice::turn_on(const Global_parameters& global_parameters, const uint32_t& 
 	phase_rel_per_sample_2 = freq_2 / global_parameters.sample_tick_freq;
 }
 
+void Voice::turn_off() {
+	state = off;
+}
+
 //This function updates the phase and sample tick variables to the latest situation
 //(function has side effects)
 //The current sample is then calculated
