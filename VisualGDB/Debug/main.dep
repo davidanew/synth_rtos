@@ -203,7 +203,7 @@ VisualGDB/Debug/main.o: main.cpp main.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\math.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\7.2.0\cmath \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\math.h Tests.h Voice.h \
- Global_parameters.h Exceptions.h
+ Global_parameters.h Exceptions.h Note_lookup.h Thread1.h
 
 main.h:
 
@@ -630,3 +630,7 @@ Voice.h:
 Global_parameters.h:
 
 Exceptions.h:
+
+Note_lookup.h:
+
+Thread1.h:

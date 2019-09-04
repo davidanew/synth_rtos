@@ -11,9 +11,12 @@
 #include "Voice.h"
 #include "Global_parameters.h"
 #include "array"
-//#include "algorithm"
 #include "Exceptions.h"
 #include "Shared.h"
+#include "Note_lookup.h"
+#include "Thread1.h"
+
+
 
 
 

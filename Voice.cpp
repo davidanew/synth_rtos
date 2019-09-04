@@ -1,8 +1,22 @@
 #include "Voice.h"
 
-void Voice::turn_on(const Global_parameters& global_parameters, const uint32_t& freq, const float &velocity) {
+
+float Voice::get_freq_for_note_number(uint8_t note_number) {
+	//Formula from: newt.phys.unsw.edu.au/jw/notes.html
+	//TODO: check these limits
+	if(note_number >= 21 && note_number <= 108) {
+		const float freq = (float) 440 * powf((float) 2, ((float) note_number - (float) 69) / (float) 12);
+		return freq;
+	}
+	else
+		while(1); //error
+}	
+
+void Voice::turn_on(const Global_parameters& global_parameters, uint8_t note_number, const float &velocity, const uint64_t sample_number) {
+	start_sample_number = sample_number;
 	this->global_parameters = global_parameters;
-	freq_1 = freq_2 = freq;
+	this->note_number = note_number;
+	freq_1 = freq_2 = get_freq_for_note_number(note_number);
 	this->velocity = velocity;	
 	state = on;
 	//TODO: These frequencies need to be seperate or have offsets
@@ -12,6 +26,8 @@ void Voice::turn_on(const Global_parameters& global_parameters, const uint32_t& 
 
 void Voice::turn_off() {
 	state = off;
+	//TODO comment that note_number means 0 means off, look at what else this means
+	note_number = 0;
 }
 
 //This function updates the phase and sample tick variables to the latest situation

@@ -82,14 +82,17 @@
     <ClCompile Include="Shared.cpp" />
     <ClCompile Include="system_stm32f4xx.c" />
     <ClCompile Include="Tests.cpp" />
+    <ClCompile Include="Thread1.cpp" />
     <ClCompile Include="Tim.cpp" />
     <ClCompile Include="Usart.cpp" />
     <ClCompile Include="Voice.cpp" />
     <ClCompile Include="Waves.cpp" />
     <ClInclude Include="Exceptions.h" />
     <ClInclude Include="Global_parameters.h" />
+    <ClInclude Include="Note_lookup.h" />
     <ClInclude Include="Shared.h" />
     <ClInclude Include="Tests.h" />
+    <ClInclude Include="Thread1.h" />
     <ClInclude Include="Voice.h" />
     <ClInclude Include="Waves.h" />
     <None Include="stm32.props" />

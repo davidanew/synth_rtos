@@ -29,9 +29,13 @@ class Voice {
 	//How much the phase is updated per sample
 	float phase_rel_per_sample_1 {0};
 	float phase_rel_per_sample_2 {0};
+	float get_freq_for_note_number(uint8_t note_number);
+
 public:		
+	uint32_t note_number {0};
+	uint64_t start_sample_number {0};
 	//Default constructor is used. Voice is initialised off so will output 0
-	void turn_on(const Global_parameters& global_parameters, const uint32_t& freq, const float &velocity);
+	void turn_on(const Global_parameters& global_parameters, uint8_t note_number, const float &velocity, const uint64_t sample_number);
 	void turn_off();
 
 	float get_next_sample(const uint64_t sample_number);
