@@ -43,18 +43,7 @@ int main(void)
 	vTaskStartScheduler();
 	 /* We should never get here as control is now taken by the scheduler */
 	for (;;);
-	//void * x;
-	//thread1(x);
 }
-
-
-
-
-//These two funtions are called by Midi_in on success of recieving a full midi message
-//Originally they were implemented as lambdas but std::funtional need dynamic memory allocation
-//These two links have a potential workaround
-//https : //blog.demofox.org/2015/02/25/avoiding-the-performance-hazzards-of-stdfunction/
-//https : //www.quora.com/C++-How-to-pass-a-lambda-function-as-a-parameter-of-another-function
 
 //TODO: Make sure 'front' is the right end of the queue
 

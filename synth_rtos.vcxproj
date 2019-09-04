@@ -89,7 +89,6 @@
     <ClCompile Include="Waves.cpp" />
     <ClInclude Include="Exceptions.h" />
     <ClInclude Include="Global_parameters.h" />
-    <ClInclude Include="Note_lookup.h" />
     <ClInclude Include="Shared.h" />
     <ClInclude Include="Tests.h" />
     <ClInclude Include="Thread1.h" />

@@ -3,22 +3,17 @@
 #include <../CMSIS_RTOS/cmsis_os.h>
 #include "Dac.h"
 #include "Usart.h"
-//#include "Tim.h"
 #include "Sample_buffer.h"
 #include "Waves.h"
-//#include "Tests.h"
 #include "Voice.h"
 #include "Global_parameters.h"
 #include "array"
-//#include "Exceptions.h"
 #include "Shared.h"
-#include "Note_lookup.h"
+//#include "Note_lookup.h"
 
-//extern "C" {
 
 void thread1(void *argument);
 
-//}
 #define NUM_VOICES 2
 
 //Thread 1 needs to know the state of the sample calculation to allow operations on 2 independet message queues (see below for explanation). 

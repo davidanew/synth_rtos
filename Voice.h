@@ -32,7 +32,9 @@ class Voice {
 	float get_freq_for_note_number(uint8_t note_number);
 
 public:		
+	//MIDI note number
 	uint32_t note_number {0};
+	//This is needed as the oldest voice is removed when new one is requested
 	uint64_t start_sample_number {0};
 	//Default constructor is used. Voice is initialised off so will output 0
 	void turn_on(const Global_parameters& global_parameters, uint8_t note_number, const float &velocity, const uint64_t sample_number);

@@ -1,6 +1,6 @@
 #include "Voice.h"
 
-
+//Calculates frequency for given note number
 float Voice::get_freq_for_note_number(uint8_t note_number) {
 	//Formula from: newt.phys.unsw.edu.au/jw/notes.html
 	//TODO: check these limits

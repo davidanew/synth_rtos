@@ -851,9 +851,6 @@
     <ClInclude Include="Shared.h">
       <Filter>Source files</Filter>
     </ClInclude>
-    <ClInclude Include="Note_lookup.h">
-      <Filter>Source files</Filter>
-    </ClInclude>
     <ClInclude Include="Thread1.h">
       <Filter>Source files</Filter>
     </ClInclude>

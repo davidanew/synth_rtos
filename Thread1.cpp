@@ -1,53 +1,8 @@
 #include "Thread1.h"
 
+void note_on_update_voice_array(std::array<Voice, NUM_VOICES>& voice_array, const Note_on_struct& note_on_struct, const Global_parameters& global_parameters, const uint64_t sample_number);
 
-
-void note_on_update_voice_array(std::array<Voice, NUM_VOICES>& voice_array, const Note_on_struct& note_on_struct, const Global_parameters& global_parameters, const uint64_t sample_number) {
-//	if (midi_command_queue_message.message_type == note_on) {
-		//TODO: test with 0, it should work now
-	if(note_on_struct.velocity_byte > 1) {
-		bool note_found {false}			;
-		//See if note exists in array
-		for(Voice& voice : voice_array) {
-			if (voice.note_number == note_on_struct.note_number) {
-				note_found = true;
-				//restart voice
-				voice.turn_on(global_parameters, note_on_struct.note_number, 1, sample_number);					
-			}				
-		}
-		if (!note_found) {
-			//If note is not in voice array then find oldest note and replace it
-			//uint64_t oldest_voice_start_sample_number {big number};
-			//Voice& oldest_voice_ref = voice_array[0];
-			uint32_t oldest_voice_index = 0;
-				
-			//for (Voice& voice : voice_array) {
-			//TODO: use std::array better
-			for (uint32_t i=0 ; i < NUM_VOICES; i ++){
-				//if (voice.start_sample_number < oldest_voice_start_sample_number) {
-					//oldest_voice_start_sample_number = voice.start_sample_number;
-				//}
-				if(voice_array[i].start_sample_number < voice_array[oldest_voice_index].start_sample_number)
-					oldest_voice_index = i;
-			}
-			////now use oldest voic ref to set new voice
-			voice_array[oldest_voice_index].turn_on(global_parameters, note_on_struct.note_number, 1, sample_number);					
-		}
-	}
-	else {
-		//velocity is 0 so turn this voice off
-		bool note_found {false}			;
-		//See if note exists in array
-		for(Voice& voice : voice_array) {
-			if (voice.note_number == note_on_struct.note_number) 
-				voice.turn_off();
-		}
-	}
-	//closing brace for note on if statemnt which we shouldn't need
-//	}	
-
-}
-
+//Currently thread 1 takes midi command messages from thread 2 and updates the voice array. The voice array is used to construct the waveform and this is sent to the sample buffer
 void thread1(void *argument)
 {
 	(void) argument;
@@ -63,8 +18,8 @@ void thread1(void *argument)
 		//Revieve message from thread 2
 		const BaseType_t xQueueReceiveReturn = xQueueReceive(midi_command_queue_handle, &midi_command_queue_message, 0);
 		if (xQueueReceiveReturn == pdTRUE) {
-			//WILL need 'if note_on' statement
 			if(midi_command_queue_message.message_type == note_on) {
+				//Handle 'note on message'
 				note_on_update_voice_array(voice_array, midi_command_queue_message.note_on_struct, global_parameters, sample_number);
 			}
 		}	
@@ -96,5 +51,39 @@ void thread1(void *argument)
 		else 
 			//Should never happen
 			while(1);
+	}
+}
+
+void note_on_update_voice_array(std::array<Voice, NUM_VOICES>& voice_array, const Note_on_struct& note_on_struct, const Global_parameters& global_parameters, const uint64_t sample_number) {
+		if(note_on_struct.velocity_byte > 1) {
+		bool note_found {false}		;
+		//See if note exists in array
+		for(Voice& voice : voice_array) {
+			if (voice.note_number == note_on_struct.note_number) {
+				note_found = true;
+				//restart voice
+				voice.turn_on(global_parameters, note_on_struct.note_number, 1, sample_number);					
+			}				
+		}
+		if (!note_found) {
+			//If note is not in voice array then find oldest note and replace it
+			uint32_t oldest_voice_index = 0;
+			//TODO: use std::array better
+			for(uint32_t i = 0 ; i < NUM_VOICES ; i++) {
+				if(voice_array[i].start_sample_number < voice_array[oldest_voice_index].start_sample_number)
+					oldest_voice_index = i;
+			}
+			voice_array[oldest_voice_index].turn_on(global_parameters, note_on_struct.note_number, 1, sample_number);					
+		}
+	}
+	else {
+		//Velocity is 0 so turn this voice off
+		bool note_found {false}		;
+		//See if note exists in array
+		//If so then turn it off
+		for(Voice& voice : voice_array) {
+			if (voice.note_number == note_on_struct.note_number) 
+				voice.turn_off();
+		}
 	}
 }
