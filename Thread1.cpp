@@ -57,7 +57,9 @@ void thread1(void *argument)
 void note_on_update_voice_array(std::array<Voice, NUM_VOICES>& voice_array, const Note_on_struct& note_on_struct, const Global_parameters& global_parameters, const uint64_t sample_number) {
 		if(note_on_struct.velocity_byte > 1) {
 		bool note_found {false}		;
-		//See if note exists in array
+			//See if note exists in array
+			
+		//for loop version	
 		for(Voice& voice : voice_array) {
 			if (voice.note_number == note_on_struct.note_number) {
 				note_found = true;
@@ -65,6 +67,15 @@ void note_on_update_voice_array(std::array<Voice, NUM_VOICES>& voice_array, cons
 				voice.turn_on(global_parameters, note_on_struct.note_number, 1, sample_number);					
 			}				
 		}
+			
+		//STL version (under test)
+		//Note it still needs to turn voice on
+		//may be able to do this in some other execution functiond	
+		std::array<Voice, NUM_VOICES>::iterator voice_it = std::find_if(voice_array.begin(), voice_array.end(), [&](Voice& voice) {return voice.note_number == note_on_struct.note_number;});		
+		bool note_found_stl = !(voice_it == voice_array.end());		
+		if (note_found_stl != note_found)
+			while (1) ; // stl test error
+
 		if (!note_found) {
 			//If note is not in voice array then find oldest note and replace it
 			uint32_t oldest_voice_index = 0;
@@ -73,7 +84,16 @@ void note_on_update_voice_array(std::array<Voice, NUM_VOICES>& voice_array, cons
 				if(voice_array[i].start_sample_number < voice_array[oldest_voice_index].start_sample_number)
 					oldest_voice_index = i;
 			}
-			voice_array[oldest_voice_index].turn_on(global_parameters, note_on_struct.note_number, 1, sample_number);					
+			//Stl version
+			auto voice_it2 = std::min_element(voice_array.begin(), voice_array.end(), [&](Voice& voice1, Voice& voice2) {return voice1.start_sample_number < voice2.start_sample_number;});	
+			//now test and turn on voice
+			if(voice_it2->start_sample_number != voice_array[oldest_voice_index].start_sample_number)
+				while(1); //STL error
+			
+			//this is part of the for loop version
+			voice_array[oldest_voice_index].turn_on(global_parameters, note_on_struct.note_number, 1, sample_number);		
+
+
 		}
 	}
 	else {

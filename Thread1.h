@@ -10,6 +10,7 @@
 #include "array"
 #include "Shared.h"
 //#include "Note_lookup.h"
+#include "algorithm"
 
 
 void thread1(void *argument);
