@@ -58,13 +58,8 @@ void note_on_update_voice_array(std::array<Voice, NUM_VOICES>& voice_array, cons
 	//See if note exists in array
 	const auto voice_find_note_it = std::find_if(voice_array.begin(), voice_array.end(), [&](Voice& voice) {return voice.note_number == note_on_struct.note_number;});		
 	const bool note_found = !(voice_find_note_it == voice_array.end());	
-	
-	
 	//if velocity is greater than zero it is a real note on
 	if(note_on_struct.velocity_byte > 0) {	
-		//See if note exists in array
-		//const auto voice_find_note_it = std::find_if(voice_array.begin(), voice_array.end(), [&](Voice& voice) {return voice.note_number == note_on_struct.note_number;});		
-		//const bool note_found = !(voice_find_note_it == voice_array.end());	
 		if (note_found) //restart voice
 			voice_find_note_it->turn_on(global_parameters, note_on_struct.note_number, 1, sample_number);
 		else {
@@ -75,9 +70,6 @@ void note_on_update_voice_array(std::array<Voice, NUM_VOICES>& voice_array, cons
 	}
 	//Velocity is 0 so turn this voice off
 	else {
-		
-		//const auto voice_find_note_it = std::find_if(voice_array.begin(), voice_array.end(), [&](Voice& voice) {return voice.note_number == note_on_struct.note_number;});		
-		//const bool note_found = !(voice_find_note_it == voice_array.end());	
 		if (note_found) //turn off voice
 			voice_find_note_it->turn_off();		
 	}
