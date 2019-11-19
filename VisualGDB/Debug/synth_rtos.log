@@ -8,8 +8,9 @@
        Search paths being used for $(MSBuildExtensionsPath) are C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild;$(MSBuildProgramFiles32)\MSBuild
        Search paths being used for $(MSBuildExtensionsPath) are C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild;$(MSBuildProgramFiles32)\MSBuild
        The "Configuration" property is a global property, and cannot be modified.
+       The "LangID" property is a global property, and cannot be modified.
        The "SolutionDir" property is a global property, and cannot be modified.
-       Property reassignment: $(MSBuildAllProjects)=";C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.targets;C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj.user" (previous value: ";C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.targets") at C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.Cpp.Default.props (169,5)
+       Property reassignment: $(MSBuildAllProjects)=";C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.targets;C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj.user" (previous value: ";C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.targets") at C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.Cpp.Default.props (170,5)
        Property reassignment: $(GNUConfigurationType)="Debug" (previous value: "Release") at C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj (34,5)
        The "SolutionExt" property is a global property, and cannot be modified.
        Property reassignment: $(BuildObjectLinkerInputsDependsOn)=";BuildCppObjectList;BuildWrappedBinaryFileObjectList" (previous value: ";BuildCppObjectList") at C:\Program Files (x86)\Sysprogs\VisualGDB\MSBuild\Targets\binary.targets (68,2)
@@ -84,8 +85,8 @@
              GenerateHexFile;
        	  OutputMemoryUtilization
            ") at C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.Cpp.DesignTime.targets (477,5)
-       Property reassignment: $(MSBuildAllProjects)="C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj;;C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.targets;C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj.user" (previous value: ";C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.targets;C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj.user") at 
-Build started 05/09/2019 10:15:30.
+       Property reassignment: $(MSBuildAllProjects)="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.Cpp.Default.props;;C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.targets;C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj.user" (previous value: ";C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.targets;C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj.user") at 
+Build started 19/11/2019 11:22:28.
      1>Project "C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj" on node 2 (Build target(s)).
      1>Building with tools version "Current".
      1>Target "CheckSettings" in file "C:\Program Files (x86)\Sysprogs\VisualGDB\MSBuild\SysprogsPlatform.targets" from project "C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj" (entry point):
@@ -159,10 +160,10 @@ Build started 05/09/2019 10:15:30.
        Target "BeginRemoteBuild" skipped, due to false condition; (('$(IsRemoteBuild)' == 'true') and ('$(DesignTimeBuild)' != 'true')) was evaluated as (('false' == 'true') and ('false' != 'true')).
      1>Target "SetTelemetryEnvironmentVariables" in file "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.Cpp.DesignTime.targets" from project "C:\Users\david\source\repos\synth_rtos\synth_rtos\synth_rtos.vcxproj" (target "Build" depends on it):
        Task "SetEnv"
-         VSTEL_SolutionSessionID={D5E99C84-F037-474E-AF7A-A44825252508}
+         VSTEL_SolutionSessionID={3CF9D644-C422-4B1F-A1D4-6AE5D7925719}
        Done executing task "SetEnv".
        Task "SetEnv"
-         VSTEL_CurrentSolutionBuildID=171316562
+         VSTEL_CurrentSolutionBuildID=73253921
        Done executing task "SetEnv".
        Task "SetEnv"
          VSTEL_ProjectID={47B14AEB-E137-426F-B89D-670D660D95C0}
@@ -238,7 +239,7 @@ Build started 05/09/2019 10:15:30.
        Using "OutputMemoryUtilization" task from assembly "C:\Program Files (x86)\Sysprogs\VisualGDB\\Sysprogs.Build.Tasks.dll".
        Task "OutputMemoryUtilization"
          ------------------- Memory utilization report -------------------
-         Used FLASH: 33KB out of 512KB (6%) [-592]
+         Used FLASH: 33KB out of 512KB (6%)
          Used SRAM: 32KB out of 128KB (25%)
        Done executing task "OutputMemoryUtilization".
      1>Done building target "OutputMemoryUtilization" in project "synth_rtos.vcxproj".
@@ -256,4 +257,4 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:01.75
+Time Elapsed 00:00:08.58
