@@ -1,13 +1,15 @@
 #include "main.h"
-
-//Currently thread 1 takes midi command messages from thread 2 and updates the voice array. The voice array is used to construct the waveform and this is sent to the sample buffer
-//static void thread1(void *);
+/*
+ USART1_IRQHandler --uart_byte_queue--> Thread 2 --midi_command_queue_handle--> Thread 3
+ MAIN TODO:produce test setup to at least give tests for refactoring
+ */
 //Thread 2 recieves UART data and processes this to send midi messages to task 1
 void thread2(void *);
 void SystemClock_Config(void);
 //TODO: rename this
-//Queue from task 1 to task to. At the moment it is just a trigger (no information)
+//Queue from task 1 to task 2 with midi data
 QueueHandle_t midi_command_queue_handle {nullptr};
+//Queue from USART1_IRQHandler to thread2 , raw uart data
 QueueHandle_t uart_byte_queue_handle {nullptr};
 
 int main(void)
@@ -28,6 +30,7 @@ int main(void)
 	Waves::init();
 	//For checking success of task creation
 	BaseType_t taskCreateReturn;
+	//delete?
 	Usart_2::transmit_byte('x');
 	//See queue descriptions above
 	midi_command_queue_handle = xQueueCreate(10, sizeof(Midi_command_queue_message));
@@ -46,7 +49,10 @@ int main(void)
 }
 
 //TODO: Make sure 'front' is the right end of the queue
+//TODO: This should be a seperate file for thread 1
 
+//This is the callback for handling the note_on midi message
+//This could be included in the Midi_in class but defineing it here makes the code clearer
 void handle_note_on(Note_on_struct note_on_struct) {
 	Midi_command_queue_message message;
 	message.message_type = note_on;
@@ -54,7 +60,7 @@ void handle_note_on(Note_on_struct note_on_struct) {
 	message.note_on_struct.note_number = note_on_struct.note_number;
 	xQueueSendToFront(midi_command_queue_handle, &message, portMAX_DELAY);
 } 
-
+//See comments for previous function
 void handle_controller_change(Controller_change_struct controller_change_struct) {
 	Midi_command_queue_message message	;
 	message.message_type = control_change;
