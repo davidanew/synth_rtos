@@ -21,6 +21,7 @@ extern "C" {
 				const BaseType_t queueSendReturn = xQueueSendToFrontFromISR(uart_byte_queue_handle, &byte, &higherPriorityTaskWoken);	
 				if (queueSendReturn != pdPASS)
 					//error
+					//TODO: do we really want to lock up on a single error?
 					while(1);
 			}
 		}
@@ -37,7 +38,7 @@ extern "C" {
 		}
 	}
 	
-	//Triggered bu UART2 when data is ready, similar to UART1 task
+	//Triggered by UART2 when data is ready, similar to UART1 task
 	//This is from PC virtial com port, so is for testing
 	void USART2_IRQHandler(void)
 	{
@@ -111,7 +112,7 @@ extern "C" {
 
 extern "C" {
 	//FreeRTOS hooks
-	//May cause some performance degredation is enabled
+	//May cause some performance degredation if enabled
 	void vApplicationMallocFailedHook(void)
 	{
 		__set_PRIMASK(1);
