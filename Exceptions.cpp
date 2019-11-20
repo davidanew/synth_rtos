@@ -1,10 +1,9 @@
 #include "Exceptions.h"
-//This file handles various types of exceptions
+//This file handles various types of processor exceptions
 //Note that C++ exceptions are not used at the moment
 
 extern "C" {
 	
-//	90 44 7f 90 44 00    ê
 	//triggered by UART1 when data is ready
 	void USART1_IRQHandler(void)
 	{
@@ -13,7 +12,7 @@ extern "C" {
 		if (Usart_1::is_flag_set(UART_FLAG_RXNE)) {
 			//Read data from uart, this clears UART state
 			const uint8_t byte = Usart_1::read_dr();
-			//for logging, may cause issues so be careful
+			//for logging, may cause timing issues so be careful
 			Usart_2::transmit_byte(byte);
 			uint8_t message {0};
 			//Make sure queue is initialised
@@ -39,7 +38,7 @@ extern "C" {
 	}
 	
 	//Triggered bu UART2 when data is ready, similar to UART1 task
-	//This if from PC virtial com port, so is for testing
+	//This is from PC virtial com port, so is for testing
 	void USART2_IRQHandler(void)
 	{
 		BaseType_t higherPriorityTaskWoken {pdFALSE};
