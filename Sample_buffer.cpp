@@ -1,8 +1,8 @@
 #include "Sample_buffer.h"
 
-//This is a buffer between the sample calculation class the the ISR sample output 
-//It is needed as sample calculation is not running all the tile as in the 
-//previous project (synth_vs)
+//This is a buffer between the sample calculation class and the ISR sample output 
+//It is needed as sample calculation is not running all the time 
+//Why does this not use an rtos queue?
 std::array<float, SAMPLE_BUFFER_LENGTH> Sample_buffer::buffer;
 
 uint32_t Sample_buffer::last_output_index {0};
@@ -24,7 +24,7 @@ uint32_t Sample_buffer::last_input_index {0};
 //input must not overtake output
 //output should always be ahead of input
 
-//As this will be difficult to get right it was decided to just diable interruts on the add_sample
+//As this will be difficult to get right it was decided to just disable interruts on the add_sample
 //get_sample is safe as it is run from a top priority interrupt
 
 //Return true/false depending if a sample was added

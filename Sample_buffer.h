@@ -1,5 +1,8 @@
 #pragma once
 
+//This is a buffer between the sample calculation class and the ISR sample output 
+//It is needed as sample calculation is not running all the time 
+
 //TODO: This doesn't need to to be extern'd
 extern "C" {
 	#include <stm32f4xx_hal.h>

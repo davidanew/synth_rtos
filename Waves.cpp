@@ -16,6 +16,8 @@ void Waves::init() {
 
 //Use the sample number to index the data
 float Waves::get_sample_with_sample_number_sine(uint32_t location) {
+	//Original implementation used abstact classes which meant that we didn't need a new
+	//function for every waveform type
 	if (location < NUM_SAMPLES_PER_WAVE)
 		return sine_array[location];
 	else
@@ -23,7 +25,7 @@ float Waves::get_sample_with_sample_number_sine(uint32_t location) {
 		return 0;	
 }
 
-//Use phase (value 0 to 1) to index the data
+//Use phase (value range 0 to 1) to index the data
 float Waves::get_sample_with_phase_rel_sine(float phase_rel){
 	uint32_t location = uint32_t(phase_rel * (float)(NUM_SAMPLES_PER_WAVE - 1));
 	if (location < NUM_SAMPLES_PER_WAVE) {

@@ -9,7 +9,7 @@ void Dac::init(DAC_HandleTypeDef& hdac, uint32_t channel) {
 	DAC_ChannelConfTypeDef sConfig {};
 	hdac.Instance = DAC;
 	hdac.State = HAL_DAC_STATE_RESET;
-	//Normally this is a call back, but this is not oo
+	//Normally this is a call back, but would rather keep this with the object
 	//So manually call member funtion here
 	//Standard call back will do nothing
 	HAL_DAC_MspInit(channel);				
@@ -29,7 +29,7 @@ void Dac::init(DAC_HandleTypeDef& hdac, uint32_t channel) {
 	}
 }	
 
-//Output value to DAC with value 0->1
+//Output value to DAC with value range 0->1
 void Dac::set_value_rel(DAC_HandleTypeDef& hdac, uint32_t channel, float value_rel) {
 	//if (value_rel <(float)-1.0 || value_rel > (float) 1.0) 
 	//	while(1);
@@ -42,7 +42,7 @@ void Dac::set_value_rel(DAC_HandleTypeDef& hdac, uint32_t channel, float value_r
 	set_value(hdac ,channel, dac_value);
 }
 
-//Output value to dac with real value
+//Output value to dac with integer value
 void Dac::set_value(DAC_HandleTypeDef& hdac, uint32_t channel, uint32_t value) {
 //	uint32_t dac_value = value;
 	if (value > 0xFFF)

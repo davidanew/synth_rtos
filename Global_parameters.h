@@ -1,5 +1,5 @@
 #pragma once
-
+//Some papameters are global to all voices
 enum Wave_type { sine_wave };
 struct Global_parameters {
 	//Wave type for each waveform (oscillator in synth terms)

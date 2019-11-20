@@ -1,9 +1,11 @@
 #pragma once
 
+//Holds data for standard waveforms and provides getter methods
+
 #include <stm32f4xx_hal.h>
 #include <math.h>
 
-//Chose 4096 samples as thsi is the same as the reolution of the DAC
+//Chose 4096 samples as this is the same as the resolution of the DAC
 //No point going much above this
 #define NUM_SAMPLES_PER_WAVE 4096
 

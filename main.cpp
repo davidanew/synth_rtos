@@ -1,6 +1,6 @@
 #include "main.h"
 /*
- USART1_IRQHandler --uart_byte_queue--> Thread 2 --midi_command_queue_handle--> Thread 3
+ USART1_IRQHandler --uart_byte_queue--> Thread 2 --midi_command_queue_handle--> Thread 1 --sample_buffer--> TIM2_IRQHandler_cpp
  MAIN TODO:produce test setup to at least give tests for refactoring
  TODO: make sure optimiation is on
  */
