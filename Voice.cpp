@@ -1,5 +1,6 @@
 #include "Voice.h"
 
+//This class holds hold one one voice, which has two waveform generators
 //Calculates frequency for given note number
 float Voice::get_freq_for_note_number(uint8_t note_number) {
 	//Formula from: newt.phys.unsw.edu.au/jw/notes.html
@@ -13,6 +14,7 @@ float Voice::get_freq_for_note_number(uint8_t note_number) {
 }	
 
 void Voice::turn_on(const Global_parameters& global_parameters, uint8_t note_number, const float &velocity, const uint64_t sample_number) {
+	//TODO: could use the other type of initialisation
 	start_sample_number = sample_number;
 	this->global_parameters = global_parameters;
 	this->note_number = note_number;
@@ -31,14 +33,14 @@ void Voice::turn_off() {
 }
 
 //This function updates the phase and sample tick variables to the latest situation
-//(function has side effects)
+//(function has side effects not evident in name)
 //The current sample is then calculated
 float Voice::get_next_sample(const uint64_t sample_number) {
 	if (state == off)
 		return 0;
 	//coded to prevent costly int to float conversion and fmod
 	//allows recovery from missed sample ticks
-	//may not be necessary in this implementation
+	//recovery may not be necessary in this implementation
 	if(previous_sample_number == 0) {
 		//Set this so there is not a long delay due to the first sample
 		previous_sample_number = sample_number;
@@ -63,6 +65,7 @@ float Voice::get_next_sample(const uint64_t sample_number) {
 	float wave_1_value {0};
 	float wave_2_value {0};
 	switch (global_parameters.wave_1_type) {
+	//TODO: implement more than one wave type!
 	case sine_wave :
 		wave_1_value = Waves::get_sample_with_phase_rel_sine(phase_rel_1);
 		break;       

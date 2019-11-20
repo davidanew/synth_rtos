@@ -2,6 +2,7 @@
 /*
  USART1_IRQHandler --uart_byte_queue--> Thread 2 --midi_command_queue_handle--> Thread 3
  MAIN TODO:produce test setup to at least give tests for refactoring
+ TODO: make sure optimiation is on
  */
 //Thread 2 recieves UART data and processes this to send midi messages to task 1
 void thread2(void *);
