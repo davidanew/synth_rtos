@@ -11,7 +11,7 @@ void thread1(void *argument)
 	std::array<Voice, NUM_VOICES> voice_array;
 	//This holds information which is common to all voices
 	Global_parameters global_parameters;
-	//Hold sample value and valididty if sample
+	//Hold sample value and validity if sample
 	Sample sample;
 	while (1) {
 		Midi_command_queue_message midi_command_queue_message;
@@ -27,6 +27,7 @@ void thread1(void *argument)
 		if(sample.state == invalid) {
 			//Running total for the sample value
 			float total {0}			;
+			//DAC 2 used to timing debug/signalling
 			*Dac_2::dac2_fast_ptr = 0xFFF;
 			//Loop through voices adding sample value to total
 			for(Voice& voice : voice_array) {
